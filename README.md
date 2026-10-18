@@ -78,6 +78,13 @@ Invocando il metodo **Clear**(context=null) otterremo il seguente risultato:
 ```
 <img width="219" height="166" alt="image-08" src="https://github.com/user-attachments/assets/c366a09d-e3b4-458d-812d-c6849e817de5" />
 
+Dal punto di vista generale, la fonte dati attesa dai nostri controlli è rappresentata da servizi web basati su metodi http Get.
+Le strutture html dei tre controlli sono state progettate e realizzate per integrarsi perfettamente con il framework Bootstrap 5.3x e Bootstrap icons e semplificano sia la progettazione di scenari gestionali a singola pagina che misti come pure l'integrazione all'interno di viste Asp.net core Razor.
+
+
+
+
+
 
 
 
