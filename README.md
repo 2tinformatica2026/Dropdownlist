@@ -1,17 +1,20 @@
 # Dropdownlist
 
-1	Introduzione
+# **1	Introduzione**
 
 Gli elenchi a discesa sono generalmente utilizzati sia all’interno degli scenari di ricerca che per l’inserimento dati.
 Tra le molteplici famiglie di elenchi noi abbiamo deciso di standardizzarne 3 ovvero quelle che con maggior frequenza integriamo all’interno dei nostri progetti:
--  Dynamic Dropdown Loader
+
+## **-  Dynamic Dropdown Loader**
+
 <img width="399" height="174" alt="image-01" src="https://github.com/user-attachments/assets/73b315fc-8776-4249-811f-10417751943b" />
 
--  Single Static Dropdown Loader
+## **-  Single Static Dropdown Loader**
   
 <img width="248" height="220" alt="image-02" src="https://github.com/user-attachments/assets/8932e849-41d7-4d62-a325-06b35d263386" />
 
--	Multiple Static dropdown
+## **-	Multiple Static dropdown**
+
 <img width="306" height="250" alt="image-03" src="https://github.com/user-attachments/assets/d7a0d803-079f-4de1-8440-dea43676cb4c" />
 
 I tre controlli sono stati pensati e realizzati per operare sia all’interno di scenari di ricerche che per l’inserimento dati e sono caratterizzati da interfacce pubbliche simili al fine di uniformarne e semplificarne l’utilizzo.
