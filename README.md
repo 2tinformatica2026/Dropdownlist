@@ -51,28 +51,28 @@ Supponiamo che ora l’utente selezioni dal menu a discesa il valore “2022”.
 <input type="hidden" data-key=”2022” value=”2026” />
 ``` 
 Per cristallizzare, ripristinare o eliminare la scelta effettuata dall’utente tutti e tre i controlli Javascript espongono i seguenti metodi pubblici:
-Save(context=null) salva la scelta dell’utente;
-Restores(context=null) ripristina la scelta precedentemente salvata;
-Clear(context=null) resetta il controllo;
+**Save**(context=null) salva la scelta dell’utente;
+**Restores**(context=null) ripristina la scelta precedentemente salvata;
+**Clear**(context=null) resetta il controllo;
 Facendo riferimento al nostro esempio ecco quale impatto avrebbe l’invocazione dei tre metodi sulla seguente configurazione: 
 ```html
 <input type="hidden" data-key=”2022” value=”2026” />
 ```
 <img width="212" height="165" alt="image-05" src="https://github.com/user-attachments/assets/6b299353-914f-4d80-8066-c49a0a2937ed" />
 
-Invocando il metodo Restores(context=null) otterremo il seguente risultato:
+Invocando il metodo **Restores**(context=null) otterremo il seguente risultato:
 ```html
 <input type="hidden" data-key=”2026” value=”2026” />
 ```
 <img width="211" height="187" alt="image-06" src="https://github.com/user-attachments/assets/da85d7b4-097c-4e90-9301-ffe2bd5fcd3a" />
 
-Invocando il metodo Save(context=null) otterremo il seguente risultato:
+Invocando il metodo **Save**(context=null) otterremo il seguente risultato:
 ```html
 <input type="hidden" data-key=”2022” value=”2022” />
 ```
 <img width="212" height="165" alt="image-07" src="https://github.com/user-attachments/assets/962eb470-27a0-4ff4-aca6-7f81f1c912b8" />
 
-Invocando il metodo Clear(context=null) otterremo il seguente risultato:
+Invocando il metodo **Clear**(context=null) otterremo il seguente risultato:
 ```html
 <input type="hidden" data-key=”” value=”” />
 ```
