@@ -3,7 +3,7 @@
 1	Introduzione
 
 Gli elenchi a discesa sono generalmente utilizzati sia all’interno degli scenari di ricerca che per l’inserimento dati.
-Tra le molteplici famiglie di elenchi noi abbiamo deciso di standardizzarne 3 ovvero quelle che, con maggior frequenza, integriamo all’interno dei nostri progetti:
+Tra le molteplici famiglie di elenchi noi abbiamo deciso di standardizzarne 3 ovvero quelle che con maggior frequenza integriamo all’interno dei nostri progetti:
 -  Dynamic Dropdown Loader
 <img width="399" height="174" alt="image-01" src="https://github.com/user-attachments/assets/73b315fc-8776-4249-811f-10417751943b" />
 
