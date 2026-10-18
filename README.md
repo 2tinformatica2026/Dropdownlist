@@ -95,7 +95,13 @@ Nella struttura sottostante al campo di input è stata assegnata la proprietà r
 
 <img width="1068" height="611" alt="image-09" src="https://github.com/user-attachments/assets/2c89eb43-3a2e-4db7-a175-b4680e4eff94" />
 
+Il contenitore del controllo è rappresentato da un elemento div caratterizzato dalla proprietà data-component = “dinamic-dropdown” e i seguenti ulteriori attributi:
 
+<img width="845" height="228" alt="image-10" src="https://github.com/user-attachments/assets/ad121011-a599-4c42-92db-05eb3a4c9443" />
+
+Descriviamo ora, nell’ordine, gli altri elementi funzionali html del controllo.
+
+<img width="848" height="673" alt="image-11" src="https://github.com/user-attachments/assets/2ba0c0ce-0a37-4b5a-ba66-1eeb654189fc" />
 
 
 
