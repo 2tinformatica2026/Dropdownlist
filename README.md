@@ -82,6 +82,18 @@ Dal punto di vista generale, la fonte dati attesa dai nostri controlli è rappre
 Le strutture html dei tre controlli sono state progettate e realizzate per integrarsi perfettamente con il framework Bootstrap 5.3x e Bootstrap icons e semplificano sia la progettazione di scenari gestionali a singola pagina che misti come pure l'integrazione all'interno di viste Asp.net core Razor.
 
 
+# **2	Dinamic Dropdown Loader**
+
+Recupera dinamicamente un elenco di record costituiti da una chiave e una descrizione come, ad esempio,
+
+**[{“description”: “Rosso”,”key”: 125},{“description”: “Verde”,”key”: 90},………]**
+
+mentre l’utente digita nell’elemento input di tipo text individuato dall’attributo data-role=”editor”. 
+Nella struttura sottostante al campo di input è stata assegnata la proprietà required per mostrare l’operatività del sistema di validazione formale. 
+
+### <u><strong>Struttura Html</strong></u>
+
+<img width="1068" height="611" alt="image-09" src="https://github.com/user-attachments/assets/2c89eb43-3a2e-4db7-a175-b4680e4eff94" />
 
 
 
