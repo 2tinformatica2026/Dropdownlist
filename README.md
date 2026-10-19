@@ -109,8 +109,8 @@ Nella struttura sottostante al campo di input è stata assegnata la proprietà r
             <input type="text" class="form-control" autocomplete="off" required data-role="editor" />
             <img class="hourglass hourglass-sm d-none" data-role="hourglass" />
             <span class="bi ms-2 mt-auto mb-auto p-0 text-danger d-none" data-role="error"></span>
-            <input type="hidden" data-description value="" />
-            <input type="hidden" data-key value="" />
+            <input name="description" type="hidden" data-description value="@ViewBag.description" />
+            <input name="key" type="hidden" data-key value="@ViewBag.key" />
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -379,4 +379,15 @@ class DDropdownLoader {
     }
 }
 ```
+### <u><strong>MVC Action example</strong></u>
+```html
+public IActionResult Index()
+{
+    if (HttpContext.Request.Method.ToUpper() == "POST")
+    {
+        ViewBag.key = HttpContext.Request.Form["key"];
+        ViewBag.description = HttpContext.Request.Form["description"];
+    }
+    return View();
+}
 
