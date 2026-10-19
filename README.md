@@ -397,14 +397,13 @@ public ActionResult ElencoProdottiServizi(string description)
 {
     using (var db = new AuthorizationDb())
     {
-        description = (description==null? "": description);
         var result = (from PS in db.ProdottiServizi
-                        where PS.Descrizione.StartsWith(description)
-                        select new
-                        {
-                            key = PS.Kid,
-                            description = PS.Descrizione,
-                        }).OrderBy(x => x.description);
+                      where PS.Descrizione.StartsWith(description == null ? "" : description)
+                      select new
+                      {
+                          key = PS.Kid,
+                          description = PS.Descrizione,
+                      }).OrderBy(x => x.description);
         return Ok(result.ToList());
     }
 }
