@@ -91,7 +91,7 @@ Recupera dinamicamente un elenco di record costituiti da una chiave e una descri
 mentre l’utente digita nell’elemento input di tipo text individuato dall’attributo data-role=”editor”. 
 Nella struttura sottostante al campo di input è stata assegnata la proprietà required per mostrare l’operatività del sistema di validazione formale. 
 
-### <u><strong>Struttura Html</strong></u>
+### <u><strong>Struttura Html del controllo</strong></u>
 
 ```html
 
