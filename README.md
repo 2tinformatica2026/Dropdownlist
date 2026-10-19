@@ -94,7 +94,7 @@ Nella struttura sottostante al campo di input è stata assegnata la proprietà r
 ### <u><strong>Struttura Html</strong></u>
 
 ```html
-<form id="form" method="post" asp-action="Index" asp-controller="Home" class="needs-validation">
+<form method="post" asp-action="Index" asp-controller="Home" class="needs-validation">
     <div class="row">
         <div class="col-7 col-md-5 col-lg-4">
             <label for="" class="form-label">Prodotti e servizi</label>
