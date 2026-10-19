@@ -136,8 +136,8 @@ Descriviamo ora, nell’ordine, gli altri elementi funzionali html del controllo
 ```html
 class DDropdownLoader {
     #TabPressed = false;
-    #MouseX;
-    #MouseY;
+    #MouseX=-1;
+    #MouseY=-1;
     #Timer = null;
     constructor(onkeyupMillisecondsDelay = 400) {
         const ddropdowns = document.querySelectorAll('div[data-component="dinamic-dropdown"]');
@@ -300,9 +300,10 @@ class DDropdownLoader {
         this.#TabPressed = false;
         return Pressed;
     }
-    #IsPointerOver(select) {
-        var el = document.elementFromPoint(this.#MouseX, this.#MouseY);
-        return (select == el.parentNode || select == el);
+    #IsPointerOver(element) {
+    if (this.#MouseX < 0 || this.#MouseY < 0) return false;
+    const elementUnderPointer = document.elementFromPoint(this.#MouseX, this.#MouseY);
+    return elementUnderPointer === element || element.contains(elementUnderPointer);
     }
     #AddOption(select, keyvalue, descriptionvalue, input, Description, Key) {
         var option = document.createElement("option");
