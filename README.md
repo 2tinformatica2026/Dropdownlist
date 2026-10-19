@@ -133,7 +133,7 @@ Descriviamo ora, nell’ordine, gli altri elementi funzionali html del controllo
 <img width="848" height="673" alt="image-11" src="https://github.com/user-attachments/assets/2ba0c0ce-0a37-4b5a-ba66-1eeb654189fc" />
 
 ### <u><strong>Javascript class DDropdownLoader</strong></u>
-```html
+```javascript
 class DDropdownLoader {
     #TabPressed = false;
     #MouseX=-1;
@@ -382,7 +382,7 @@ class DDropdownLoader {
 
 ```
 ### <u><strong>MVC Action and Webservice example</strong></u>
-```html
+```csharp 
 public IActionResult Index()
 {
     if (HttpContext.Request.Method.ToUpper() == "POST")
