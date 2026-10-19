@@ -393,7 +393,7 @@ public IActionResult Index()
 
 
 [HttpGet]
-public IActionResult ElencoProdottiServizi(string description)
+public ActionResult ElencoProdottiServizi(string description)
 {
     using (var db = new AuthorizationDb())
     {
