@@ -408,5 +408,46 @@ public IActionResult ElencoProdottiServizi(string description)
         return Ok(result.ToList());
     }
 }
+```
+### <u><strong>MVC View example</strong></u>
+```html
+<form method="post" asp-action="Index" asp-controller="Home" class="needs-validation">
+    <div class="row">
+        <div class="col-7 col-md-5 col-lg-4">
+            <label class="form-label">Prodotti e servizi</label>
+            <div class="ddropdown input-group" id="test"
+                    data-component="dinamic-dropdown"
+                    data-context=""
+                    data-description-field="description"
+                    data-Key-field="key"
+                    data-url-search-param-name="description"
+                    data-url="/Offers/ElencoProdottiServizi">
+                <span class="input-group-text">@@</span>
+                <input type="text" class="form-control" autocomplete="off" required data-role="editor" />
+                <img class="hourglass hourglass-sm d-none" data-role="hourglass" />
+                <span class="bi ms-2 mt-auto mb-auto p-0 text-danger d-none" data-role="error"></span>
+                <input name="description" type="hidden" data-description value="@ViewBag.description" />
+                <input name="key" type="hidden" data-key value="@ViewBag.key" />
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Looks bad!
+                </div>
+            </div>
+            <select class="form-select d-none overflow-auto" data-role="dinamic-dropdown-items"></select>
+        </div>
+    </div>
+
+    <input type="submit" value="save" onclick="dd.Save()" />
+    <input type="button" value="clear" onclick="dd.Clear()" />
+    <input type="button" value="restores" onclick="dd.Restores()" />
+    <input type="button" value="set url" onclick="dd.WriteUrl('test','/Offers/ElencoProdottiServizi')" />
+    <input type="button" value="clear url" onclick="dd.WriteUrl('test','')" />
+    <input type="button" value="writeKeyAndDescription" onclick="dd.SetKeyAndDescription('test','12','Sopralluogo')" />
+    <input type="button" value="GetKeyAndDescriptioValues" onclick="var r = dd.GetKeyAndDescriptioValues('test'); alert(r.key + ' ' + r.description)" />
+
+
+</form>
 
 
