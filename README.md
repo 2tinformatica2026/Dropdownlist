@@ -397,7 +397,7 @@ public ActionResult ElencoProdottiServizi(string description)
 {
     using (var db = new AuthorizationDb())
     {
-        if (description == null) description = "";
+        description = (description==null? "": description);
         var result = (from PS in db.ProdottiServizi
                         where PS.Descrizione.StartsWith(description)
                         select new
