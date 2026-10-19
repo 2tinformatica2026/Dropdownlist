@@ -104,7 +104,7 @@ Nella struttura sottostante al campo di input è stata assegnata la proprietà r
                 data-description-field="description"
                 data-Key-field="key"
                 data-url-search-param-name="description"
-                data-url="/Offers/ElencoProdottiServizi2">
+                data-url="/Offers/ElencoProdottiServizi">
             <span class="input-group-text">@@</span>
             <input type="text" class="form-control" autocomplete="off" required data-role="editor" />
             <img class="hourglass hourglass-sm d-none" data-role="hourglass" />
@@ -379,7 +379,7 @@ class DDropdownLoader {
     }
 }
 ```
-### <u><strong>MVC Action example</strong></u>
+### <u><strong>MVC Action and Webservice example</strong></u>
 ```html
 public IActionResult Index()
 {
@@ -390,4 +390,23 @@ public IActionResult Index()
     }
     return View();
 }
+
+
+[HttpGet]
+public IActionResult ElencoProdottiServizi(string description)
+{
+    using (var db = new AuthorizationDb())
+    {
+        if (description == null) description = "";
+        var result = (from PS in db.ProdottiServizi
+                        where PS.Descrizione.StartsWith(description)
+                        select new
+                        {
+                            key = PS.Kid,
+                            description = PS.Descrizione,
+                        }).OrderBy(x => x.description);
+        return Ok(result.ToList());
+    }
+}
+
 
