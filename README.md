@@ -300,11 +300,13 @@ class DDropdownLoader {
         this.#TabPressed = false;
         return Pressed;
     }
+
     #IsPointerOver(element) {
     if (this.#MouseX < 0 || this.#MouseY < 0) return false;
     const elementUnderPointer = document.elementFromPoint(this.#MouseX, this.#MouseY);
     return elementUnderPointer === element || element.contains(elementUnderPointer);
     }
+
     #AddOption(select, keyvalue, descriptionvalue, input, Description, Key) {
         var option = document.createElement("option");
         option.setAttribute("key", keyvalue);
