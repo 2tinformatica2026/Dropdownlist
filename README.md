@@ -455,4 +455,10 @@ public ActionResult ElencoProdottiServizi(string description)
         const dd = new DDropdownLoader();
     </script>
 }
+```
+### <u><strong>Operatività del controllo</strong></u>
+Il costruttore della classe ricerca tutti i container data-component="dinamic-dropdown" ed esegue su di essi due principali azioni: 
+- carica eventuali valori di default (chiave e descrizione) si veda esempio precedente con l'assegnazione value="@ViewBag.description" e value="@ViewBag.key"
+- assegna all'elemento input di tipo text e data-role="editor" un gestore per ciacuno dei seguenti eventi: blur, keydown, keyup, cut, paste e dblclick.
+
 
