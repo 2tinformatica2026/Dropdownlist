@@ -447,7 +447,11 @@ public IActionResult ElencoProdottiServizi(string description)
     <input type="button" value="writeKeyAndDescription" onclick="dd.SetKeyAndDescription('test','12','Sopralluogo')" />
     <input type="button" value="GetKeyAndDescriptioValues" onclick="var r = dd.GetKeyAndDescriptioValues('test'); alert(r.key + ' ' + r.description)" />
 
-
 </form>
 
+@section Scripts { 
+    <script>
+        const dd = new DDropdownLoader();
+    </script>
+}
 
