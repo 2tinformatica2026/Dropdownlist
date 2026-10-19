@@ -94,34 +94,34 @@ Nella struttura sottostante al campo di input è stata assegnata la proprietà r
 ### <u><strong>Struttura Html</strong></u>
 
 ```html
-<form method="post" asp-action="Index" asp-controller="Home" class="needs-validation">
-    <div class="row">
-        <div class="col-7 col-md-5 col-lg-4">
-            <label for="" class="form-label">Prodotti e servizi</label>
-            <div class="ddropdown input-group"
-                    data-component="dinamic-dropdown"
-                    data-context=""
-                    data-description-field="description"
-                    data-Key-field="key"
-                    data-url-search-param-name="description"
-                    data-url="/Offers/ElencoProdottiServizi2">
-                <span class="input-group-text">@@</span>
-                <input type="text" class="form-control" autocomplete="off" required data-role="editor" />
-                <img class="hourglass hourglass-sm d-none" data-role="hourglass" />
-                <span class="bi ms-2 mt-auto mb-auto p-0 text-danger d-none" data-role="error"></span>
-                <input type="hidden" data-description value="" />
-                <input type="hidden" data-key value="" />
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-                <div class="invalid-feedback">
-                    Looks bad!
-                </div>
+
+<div class="row">
+    <div class="col-7 col-md-5 col-lg-4">
+        <label for="" class="form-label">Prodotti e servizi</label>
+        <div class="ddropdown input-group"
+                data-component="dinamic-dropdown"
+                data-context=""
+                data-description-field="description"
+                data-Key-field="key"
+                data-url-search-param-name="description"
+                data-url="/Offers/ElencoProdottiServizi2">
+            <span class="input-group-text">@@</span>
+            <input type="text" class="form-control" autocomplete="off" required data-role="editor" />
+            <img class="hourglass hourglass-sm d-none" data-role="hourglass" />
+            <span class="bi ms-2 mt-auto mb-auto p-0 text-danger d-none" data-role="error"></span>
+            <input type="hidden" data-description value="" />
+            <input type="hidden" data-key value="" />
+            <div class="valid-feedback">
+                Looks good!
             </div>
-            <select class="form-select d-none overflow-auto" data-role="dinamic-dropdown-items"></select>
+            <div class="invalid-feedback">
+                Looks bad!
+            </div>
         </div>
+        <select class="form-select d-none overflow-auto" data-role="dinamic-dropdown-items"></select>
     </div>
-</form>
+</div>
+
 ```
 
 Il contenitore del controllo è rappresentato da un elemento div caratterizzato dalla proprietà data-component = “dinamic-dropdown” e i seguenti ulteriori attributi:
