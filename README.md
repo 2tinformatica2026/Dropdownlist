@@ -430,8 +430,15 @@ class DDropdownLoader {
 }
 ```
 ### <u><strong>Operatività del controllo</strong></u>
-Il costruttore della classe ricerca tutti i container data-component="dinamic-dropdown" ed esegue su di essi due principali azioni: 
-- carica l'eventuale valore iniziale (chiave,descrizione) si veda esempio precedente con l'assegnazione value="@ViewBag.description" e value="@ViewBag.key"
-- assegna all'elemento input di tipo text e data-role="editor" un gestore per ciacuno dei seguenti eventi: blur, keydown, keyup, cut, paste e dblclick.
+Il costruttore della classe ricerca tutti i container con proprietà data-component="dinamic-dropdown" ed esegue su di essi due principali azioni: 
+- imposta l'eventuale valore iniziale (chiave, descrizione) si veda esempio precedente con l'assegnazione value="@ViewBag.description" e value="@ViewBag.key"
+- assegna all'elemento input di tipo text e proprietà data-role="editor" un gestore per ciacuno dei seguenti eventi: blur, keydown, keyup, cut, paste e dblclick.
 Tutti i citati gestori, con la sola eccezione del blur e keydown, avviano la chiamata al servizio web dedicato. 
-Il blur verifica invece l'eventuale chiusura dell'elenco dei risultati in questo caso recuperando l'ultima descrizione valida derivata da un "clcik" dell'utente su un item dell'elenco. 
+Il gestore dell'evento blur verifica invece l'eventuale chiusura dell'elenco dei risultati in questo caso recuperando l'ultima descrizione valida derivata da un "clcik" dell'utente su un item dell'elenco.
+Nell'esempio data-url="/Offers/ElencoProdottiServizi" non ha parametri ma è del tutto ragionevole ipotizzare che possa averne, es.: data-url="/Offers/ElencoProdottiServizi?category=100&stock=true".
+Nella chiamata javascript #load(container) in coda agli eventuali parametri url verrà aggiunto quello relativo alla descrizione oggetto della richiesta, esempio:
+url = "/Offers/ElencoProdottiServizi?category=100&stock=true&description=hotel" 
+
+
+
+
