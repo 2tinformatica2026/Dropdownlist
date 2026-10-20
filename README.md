@@ -157,13 +157,13 @@ class DDropdownLoader {
             input.addEventListener('blur', (e)=> {
                 var div = e.target.parentNode;
                 var select = div.nextElementSibling;
-                var Description = div.querySelector("input[type='hidden'][data-description]");
+                var description = div.querySelector("input[type='hidden'][data-description]");
                 var TabPressed = this.#IsTabPressed();
                 var PointerOver = this.#IsPointerOver(select);
                 if ((TabPressed) || (TabPressed == false && PointerOver == false)) {
                     var input = div.querySelector("input[type='text']");
-                    if (input.value != Description.dataset.description) {
-                        input.value = Description.dataset.description;
+                    if (input.value != description.dataset.description) {
+                        input.value = description.dataset.description;
                     }
                     if (!select.classList.contains("d-none")) select.classList.add("d-none");
                     select.innerHTML = '';
@@ -179,8 +179,8 @@ class DDropdownLoader {
             //blur event on select element
             div.nextElementSibling.addEventListener('blur', (e)=> {
                 var div = e.target.previousElementSibling;
-                var Description = div.querySelector("input[type='hidden'][data-description]");
-                div.querySelector("input[type='text']").value = Description.dataset.description;
+                var description = div.querySelector("input[type='hidden'][data-description]");
+                div.querySelector("input[type='text']").value = description.dataset.description;
                 if (!e.target.classList.contains("d-none")) e.target.classList.add("d-none");
                 e.target.innerHTML = '';
             });
@@ -216,7 +216,7 @@ class DDropdownLoader {
         containers.forEach(container => {
             var datakey = container.querySelector('input[type="hidden"][data-key]');
             var datadescription = container.querySelector('input[type="hidden"][data-description]');
-            datakey.value = datakey.dataset.Key;
+            datakey.value = datakey.dataset.key;
             datadescription.value = datadescription.dataset.description;
         });
     }
@@ -273,11 +273,11 @@ class DDropdownLoader {
     }
     #GetContainerElements(container) {
         const input = container.querySelector('input[type="text"][data-role="editor"]');
-        const Description = container.querySelector("input[type='hidden'][data-description]");
+        const description = container.querySelector("input[type='hidden'][data-description]");
         const Key = container.querySelector("input[type='hidden'][data-Key]");
         const descriptionField = container.dataset.descriptionField;
         const KeyField = container.dataset.keyField;
-        const UrlSearchParamName = container.dataset.urlSearchParamName;
+        const urlSearchParamName = container.dataset.urlSearchParamName;
         const select = container.nextElementSibling;
         const url = container.dataset.url.trim();
         const hourglass = container.querySelector('[data-role="hourglass"]');
@@ -290,8 +290,8 @@ class DDropdownLoader {
             error: error,
             descriptionField: descriptionField,
             KeyField: KeyField,
-            UrlSearchParamName: UrlSearchParamName,
-            Description: Description,
+            urlSearchParamName: urlSearchParamName,
+            description: description,
             Key: Key
         }
     }
@@ -305,13 +305,13 @@ class DDropdownLoader {
         const elementUnderPointer = document.elementFromPoint(this.#MouseX, this.#MouseY);
         return elementUnderPointer === element || element.contains(elementUnderPointer);
     }
-    #AddOption(select, keyvalue, descriptionvalue, input, Description, Key) {
+    #AddOption(select, keyvalue, descriptionvalue, input, description, Key) {
         var option = document.createElement("option");
         option.setAttribute("key", keyvalue);
         option.innerHTML = descriptionvalue;
         option.onclick = function (e) {
             e.stopPropagation();
-            Description.dataset.description = e.target.innerText; 
+            description.dataset.description = e.target.innerText; 
             Key.dataset.Key = e.target.getAttribute("key");
             input.value = e.target.innerText;
             if (!select.classList.contains("d-none")) select.classList.add("d-none");
@@ -339,14 +339,14 @@ class DDropdownLoader {
         const el = this.#GetContainerElements(container);
         if (el.url != '') {
             //adding url parameter preserving any existings params
-            const url = this.#Url(el.url, el.UrlSearchParamName, el.input.value.trim());
+            const url = this.#Url(el.url, el.urlSearchParamName, el.input.value.trim());
             el.select.innerHTML = '';
             el.select.size = 0;
             el.select.style.width = container.clientWidth + 'px';
             el.hourglass.classList.remove("d-none");
             el.error.classList.add("d-none");
             el.error.classList.remove('bi-sign-do-not-enter,bi-exclamation-circle');
-            this.#AddOption(el.select, '', '', el.input, el.Description, el.Key);
+            this.#AddOption(el.select, '', '', el.input, el.description, el.Key);
             const xhr = new XMLHttpRequest();
             xhr.open('get', url);
             xhr.responseType = 'json';
@@ -358,7 +358,7 @@ class DDropdownLoader {
                             if (xhr.response.length > 0) {
                                 el.select.classList.remove("d-none");
                                 xhr.response.forEach(item => {
-                                    this.#AddOption(el.select, item[el.KeyField], item[el.descriptionField], el.input, el.Description, el.Key);
+                                    this.#AddOption(el.select, item[el.KeyField], item[el.descriptionField], el.input, el.description, el.Key);
                                 });
                                 el.select.size = xhr.response.length + 2;
                                 el.select[0].selected = false;
@@ -379,7 +379,6 @@ class DDropdownLoader {
         }
     }
 }
-
 ```
 ### <u><strong>MVC Action and Webservice example</strong></u>
 ```csharp 
