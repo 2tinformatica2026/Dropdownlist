@@ -158,9 +158,9 @@ class DDropdownLoader {
                 var div = e.target.parentNode;
                 var select = div.nextElementSibling;
                 var description = div.querySelector("input[type='hidden'][data-description]");
-                var TabPressed = this.#IsTabPressed();
-                var PointerOver = this.#IsPointerOver(select);
-                if ((TabPressed) || (TabPressed == false && PointerOver == false)) {
+                var tabPressed = this.#IsTabPressed();
+                var pointerOver = this.#IsPointerOver(select);
+                if ((tabPressed) || (tabPressed == false && pointerOver == false)) {
                     var input = div.querySelector("input[type='text']");
                     if (input.value != description.dataset.description) {
                         input.value = description.dataset.description;
@@ -185,7 +185,9 @@ class DDropdownLoader {
                 e.target.innerHTML = '';
             });
             //keydown event
-            input.addEventListener('keydown', (e)=> { this.#TabPressed = (e.which == 9) });
+            input.addEventListener('keydown', (e) => {
+                this.#TabPressed = (e.which == 9)
+            });
             //keyup event
             input.addEventListener('keyup', ()=> {
                 if (this.#Timer != null) clearTimeout(this.#Timer);
@@ -274,9 +276,9 @@ class DDropdownLoader {
     #GetContainerElements(container) {
         const input = container.querySelector('input[type="text"][data-role="editor"]');
         const description = container.querySelector("input[type='hidden'][data-description]");
-        const Key = container.querySelector("input[type='hidden'][data-Key]");
+        const key = container.querySelector("input[type='hidden'][data-Key]");
         const descriptionField = container.dataset.descriptionField;
-        const KeyField = container.dataset.keyField;
+        const keyField = container.dataset.keyField;
         const urlSearchParamName = container.dataset.urlSearchParamName;
         const select = container.nextElementSibling;
         const url = container.dataset.url.trim();
@@ -289,30 +291,30 @@ class DDropdownLoader {
             hourglass: hourglass,
             error: error,
             descriptionField: descriptionField,
-            KeyField: KeyField,
+            KeyField: keyField,
             urlSearchParamName: urlSearchParamName,
             description: description,
-            Key: Key
+            Key: key
         }
     }
     #IsTabPressed() {
-        var Pressed = this.#TabPressed;
+        var pressed = this.#TabPressed;
         this.#TabPressed = false;
-        return Pressed;
+        return pressed;
     }
     #IsPointerOver(element) {
         if (this.#MouseX < 0 || this.#MouseY < 0) return false;
         const elementUnderPointer = document.elementFromPoint(this.#MouseX, this.#MouseY);
         return elementUnderPointer === element || element.contains(elementUnderPointer);
     }
-    #AddOption(select, keyvalue, descriptionvalue, input, description, Key) {
+    #AddOption(select, keyvalue, descriptionvalue, input, description, key) {
         var option = document.createElement("option");
         option.setAttribute("key", keyvalue);
         option.innerHTML = descriptionvalue;
         option.onclick = function (e) {
             e.stopPropagation();
             description.dataset.description = e.target.innerText; 
-            Key.dataset.Key = e.target.getAttribute("key");
+            key.dataset.Key = e.target.getAttribute("key");
             input.value = e.target.innerText;
             if (!select.classList.contains("d-none")) select.classList.add("d-none");
             select.innerHTML = '';
@@ -379,35 +381,7 @@ class DDropdownLoader {
         }
     }
 }
-```
-### <u><strong>MVC Action and Webservice example</strong></u>
-```csharp 
-public IActionResult Index()
-{
-    if (HttpContext.Request.Method.ToUpper() == "POST")
-    {
-        ViewBag.key = HttpContext.Request.Form["key"];
-        ViewBag.description = HttpContext.Request.Form["description"];
-    }
-    return View();
-}
 
-
-[HttpGet]
-public ActionResult ElencoProdottiServizi(string description)
-{
-    using (var db = new AuthorizationDb())
-    {
-        var result = (from PS in db.ProdottiServizi
-                      where PS.Descrizione.StartsWith(description == null ? "" : description)
-                      select new
-                      {
-                          key = PS.Kid,
-                          description = PS.Descrizione,
-                      }).OrderBy(x => x.description);
-        return Ok(result.ToList());
-    }
-}
 ```
 ### <u><strong>MVC View example</strong></u>
 ```html
