@@ -437,7 +437,15 @@ Tutti i citati gestori, con la sola eccezione del blur e keydown, avviano la chi
 Il gestore dell'evento blur verifica invece l'eventuale chiusura dell'elenco dei risultati in questo caso recuperando l'ultima descrizione valida derivata da un "clcik" dell'utente su un item dell'elenco.
 Nell'esempio data-url="/Offers/ElencoProdottiServizi" non ha parametri ma è del tutto ragionevole ipotizzare che possa averne, es.: data-url="/Offers/ElencoProdottiServizi?category=100&stock=true".
 Nella chiamata javascript #load(container) in coda agli eventuali parametri url verrà aggiunto quello relativo alla descrizione oggetto della richiesta, esempio:
-url = "/Offers/ElencoProdottiServizi?category=100&stock=true&description=hotel" 
+
+<u><strong>url = "/Offers/ElencoProdottiServizi?category=100&stock=true&description=hotel"</strong></u>
+
+Ora una considerazione di natura funzionale. A volte può capitare di dover popolare un elenco solo dopo aver ricevuto un set di parametri da un'altro elenco, esempio:
+Per consentire all'utente di effettuare una ricerca su un elenco dinamico di prodotti questi deve prima selezionare la categoria merceologica da un'altro elenco.
+
+
+
+
 
 
 
