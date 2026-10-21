@@ -439,14 +439,25 @@ Il gestore dell'evento blur verifica invece la scomparsa dell'elenco dei risulta
 Alcune considerazioni sulla proprietà data-url del container.
 Nel nostro esempio data-url="/Offers/ElencoProdottiServizi" non ha parametri ma è del tutto ragionevole ipotizzare che possa averne, es.:
 
-data-url="/Offers/ElencoProdottiServizi?category=100&stock=true".
+data-url="/Offers/ElencoProdottiServizi?category=100".
 
-All'interno del metodo privato #load(container){...} viene garantita l'integrità degli eventuali parametri preesistenti aggiungendovi quello relativo alla descrizione oggetto della richiesta, esempio:
+Nel metodo privato #load(container){...} viene garantita l'integrità degli eventuali parametri preesistenti aggiungendovi dinamicamente quello relativo alla descrizione oggetto della richiesta quindi, facendo riferimento al nostro esempio, avremo:
 
-<u><strong>url = "/Offers/ElencoProdottiServizi?category=100&stock=true&description=hotel"</strong></u>
+<u>url = "/Offers/ElencoProdottiServizi?category=100&description=hotel"</u>
 
-Ora una considerazione di natura funzionale. A volte può capitare di dover popolare un elenco solo dopo aver ricevuto un set di parametri da un'altro elenco, esempio:
-Per consentire all'utente di effettuare una ricerca su un elenco dinamico di prodotti questi deve prima selezionare la categoria merceologica da un'altro elenco.
+Il controllo è immediatamente pronto a interagire con l'utente ma cosa fare quando tale interazione invece non deve avvenire prima che un'altro processo generi un parametro url essenziale?
+In altre parole, supponiamo che il parametro <strong>category</strong> provenga da una scelta dinamica effettuata dall'utente, per esempio, selezionando una categoria merceologica da un elenco a discesa.
+In questo caso si assegni data-url="" e si utilizzi il metodo pubblico WriteUrl(containerId, url) con l'url completo:
+
+```javascript
+<script>
+        const dd = new DDropdownLoader();
+        dd.WriteUrl(containerId, "/Offers/ElencoProdottiServizi?category=100")
+</script>
+```
+
+
+
 
 
 
