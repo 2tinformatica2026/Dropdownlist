@@ -437,7 +437,8 @@ Tutti i citati gestori, con la sola eccezione del blur e keydown, avviano la chi
 Il gestore dell'evento blur verifica invece la scomparsa dell'elenco dei risultati recuperando l'ultima descrizione valida derivata da un "clcik" dell'utente su un item dell'elenco.
 
 Alcune considerazioni sulla proprietà data-url del container.
-Nell'esempio data-url="/Offers/ElencoProdottiServizi" non ha parametri ma è del tutto ragionevole ipotizzare che possa averne, es.: data-url="/Offers/ElencoProdottiServizi?category=100&stock=true".
+Nell'esempio data-url="/Offers/ElencoProdottiServizi" non ha parametri ma è del tutto ragionevole ipotizzare che possa averne, es.: 
+data-url="/Offers/ElencoProdottiServizi?category=100&stock=true".
 Nella chiamata javascript #load(container){...} in coda agli eventuali parametri url verrà aggiunto quello relativo alla descrizione oggetto della richiesta, esempio:
 
 <u><strong>url = "/Offers/ElencoProdottiServizi?category=100&stock=true&description=hotel"</strong></u>
