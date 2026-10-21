@@ -435,6 +435,8 @@ Il costruttore della classe ricerca tutti i container con proprietà data-compon
 - assegna all'elemento input di tipo text e proprietà data-role="editor" un gestore per ciacuno dei seguenti eventi: blur, keydown, keyup, cut, paste e dblclick.
 Tutti i citati gestori, con la sola eccezione del blur e keydown, avviano la chiamata al servizio web dedicato. 
 Il gestore dell'evento blur verifica invece la scomparsa dell'elenco dei risultati recuperando l'ultima descrizione valida derivata da un "clcik" dell'utente su un item dell'elenco.
+
+Alcune considerazioni sulla proprietà data-url del container.
 Nell'esempio data-url="/Offers/ElencoProdottiServizi" non ha parametri ma è del tutto ragionevole ipotizzare che possa averne, es.: data-url="/Offers/ElencoProdottiServizi?category=100&stock=true".
 Nella chiamata javascript #load(container){...} in coda agli eventuali parametri url verrà aggiunto quello relativo alla descrizione oggetto della richiesta, esempio:
 
