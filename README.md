@@ -456,6 +456,17 @@ In questo caso si assegni data-url="" e si utilizzi il metodo pubblico WriteUrl(
 </script>
 ```
 
+# **3	Single Static Dropdown Loader**
+
+Recupera da un apposito servizio web un elenco di record costituiti da una chiave e una descrizione come, ad esempio,
+
+**[{“description”: “Rosso”,”key”: 125},{“description”: “Verde”,”key”: 90},………]**
+
+e memorizza la scelta effettuata dall'utente.
+
+Sulla scorta del valore assegnato all'attributo data-autoload del container il caricamento verrà effettuato o in fase di istanzazione della classe oppure successivamente tramite Javascript:
+- data-autoload="yes" => caricamento in fase di istanzazione della classe;
+- data-autoload="no" => invocando successivamente il metodo pubblico Load(containerId, params = null).
 
 
 
