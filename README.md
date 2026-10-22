@@ -468,12 +468,43 @@ Sulla scorta del valore assegnato all'attributo data-autoload del container il c
 - data-autoload="yes" => caricamento in fase di istanzazione della classe;
 - data-autoload="no" => invocando successivamente il metodo pubblico Load(containerId, params = null).
 
+### <u><strong>Struttura Html del controllo</strong></u>
+
+```html
+
+<div class="row">
+    <div class="col">
+        <label class="form-label user-select-none">Esercizio</label>
+        <div class="ssdropdown dropdown input-group"
+                data-component="single-static-dropdown"
+                data-bs-toggle="dropdown"
+                data-selected-if-single-result="no"
+                data-autoload="yes"
+                data-uri="/Offers/EserciziOfferte"
+                data-description-fieldname="esercizio"
+                data-key-fieldname="esercizio"
+                data-context="">
+            <input type="text"
+                    readonly
+                    autocomplete="off"
+                    class="form-control bg-white user-select-none no-focus"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false" />
+            <span class="input-group-text dropdown-toggle" role="button"></span>
+            <ul class="dropdown-menu"></ul>
+            <input type="hidden" value="@ViewBag.Anno" data-key="" />
+        <!--<input type="hidden" asp-for="@Model.Anno" data-key="" /> -->
+            <img class="hourglass hourglass-sm d-none" data-role="hourglass" />
+        </div>
+    </div>
+</div>
 
 
-
-
-
-
+```
+La logica a doppio stato della scelta effettuata dall'utente è la stessa ma la sua implementazione è molto più semplice.
+Poiché le descrizioni degli items non possono essere modificate dall'utente, il quale può solo sceglierne una tra quelle proposte, la chiave è il solo valore che dobbiamo memorizzare.
+ 
 
 
 
