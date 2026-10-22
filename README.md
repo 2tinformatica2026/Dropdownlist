@@ -462,7 +462,7 @@ In questo caso si assegni data-url="" e si utilizzi il metodo pubblico WriteUrl(
 
 Recupera da un apposito servizio web un elenco di record costituiti da una chiave e una descrizione come, ad esempio,
 
-**[“esercizio”: “2026”,“esercizio”: “2022”,………]**
+**[{“esercizio”: “2026”},{“esercizio”: “2022”},………]**
 
 e memorizza la scelta effettuata dall'utente.
 
@@ -506,6 +506,9 @@ Sulla scorta del valore assegnato all'attributo data-autoload del container il c
 ```
 La logica a doppio stato della scelta effettuata dall'utente è la stessa ma la sua implementazione è molto più semplice.
 Poiché le descrizioni degli items non possono essere modificate dall'utente, il quale può solo sceglierne una tra quelle proposte, la chiave è il solo valore che dobbiamo memorizzare.
+Nota bene, in questo esempio descrizione e chiave coincidono:
+data-description-fieldname="esercizio"
+data-key-fieldname="esercizio"
  
 ### <u><strong>Javascript class SSDropdownLoader</strong></u>
 ```javascript
