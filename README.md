@@ -616,7 +616,6 @@ class SSDropdownLoader {
         } else return url;
     }
     #Load(container, params = null) {
-        const This = this;
         const xhr = new XMLHttpRequest();
         var uri = container.dataset.uri;
         uri = this.#Url(uri, params);
@@ -627,7 +626,7 @@ class SSDropdownLoader {
         ul.innerHTML = '';
         xhr.open('get', uri);
         xhr.responseType = 'json';
-        xhr.onreadystatechange = function () {
+        xhr.onreadystatechange = ()=> {
             if (xhr.readyState == 4) {
                 if (xhr.status == 200) {
                     var result = xhr.response;
@@ -636,10 +635,10 @@ class SSDropdownLoader {
                         input.dataset.ssdropdownKey = input.value;
                         var firstSelected = (result.length == 1 && container.dataset.selectedIfSingleResult == 'yes');
                         if (!firstSelected) {
-                            This.#AddItem(ul, '&nbsp;', '');
-                            for (var i = 0; i < result.length; i++) { This.#AddItem(ul, result[i][descFieldName], result[i][keyFieldName]); }
-                            This.#BindEvents(container);
-                            This.#UpdateCurrentIndex(container);
+                            this.#AddItem(ul, '&nbsp;', '');
+                            for (var i = 0; i < result.length; i++) { this.#AddItem(ul, result[i][descFieldName], result[i][keyFieldName]); }
+                            this.#BindEvents(container);
+                            this.#UpdateCurrentIndex(container);
                         }
                         else
                         {
