@@ -505,6 +505,157 @@ Sulla scorta del valore assegnato all'attributo data-autoload del container il c
 La logica a doppio stato della scelta effettuata dall'utente è la stessa ma la sua implementazione è molto più semplice.
 Poiché le descrizioni degli items non possono essere modificate dall'utente, il quale può solo sceglierne una tra quelle proposte, la chiave è il solo valore che dobbiamo memorizzare.
  
+### <u><strong>Javascript class SSDropdownLoader</strong></u>
+```javascript
 
+class SSDropdownLoader {
+    constructor() {
+        const containers = document.querySelectorAll('div[data-component="single-static-dropdown"]');
+        containers.forEach(container => { 
+            if (container.dataset.autoload.toLowerCase() != 'no') this.#Load(container);
+        })
+    }
+    Save(context=null) {
+        const filter = context == null ? '' : '[data-context="' + context + '"]';
+        const containers = document.querySelectorAll('div[data-component="single-static-dropdown"]' + filter);
+        containers.forEach(container => {
+            var datakeys = container.querySelectorAll('input[data-key]');
+            datakeys.forEach(datakey => {
+                datakey.value = datakey.dataset.key;
+            });
+        });
+    }
+    Restores(context=null) {
+        const filter = context == null ? '' : '[data-context="' + context + '"]';
+        const containers = document.querySelectorAll('div[data-component="single-static-dropdown"]' + filter);
+        containers.forEach(container => {
+            var datakey = container.querySelector('input[data-key]');
+            datakey.dataset.key = datakey.value;
+            this.#UpdateCurrentIndex(container);
+        });
+    }
+    Clear(context=null, removeElements = false) {
+        const filter = context == null ? '' : '[data-context="' + context + '"]';
+        const containers = document.querySelectorAll('div[data-component="single-static-dropdown"]' + filter);
+        containers.forEach(container => {
+            var input = container.querySelector('input[type=text]');
+            input.value = '';
+            var datakey = container.querySelector('input[data-key]');
+            datakey.value = '';
+            datakey.dataset.key = '';
+            if (removeElements) {
+                var ul = container.querySelector('ul');
+                ul.innerHTML = '';
+            }
+        });
+    }
+    Load(containerId, params = null) {
+        const container = document.querySelector('div[data-component="single-static-dropdown"][id=' + containerId + ']');
+        this.#Load(container, params);
+    }
+    GetKeyValue(containerId) {
+        return document.getElementById(containerId).querySelector('input[type="hidden"][data-key]').value;
+    }
+    #BindEvents(container) {
+        var items = container.querySelector('ul.dropdown-menu').querySelectorAll('a');
+        var onItemclick = new Event('itemClick.2t.staticDropdownLoader', { bubbles: true, cancelable: true, composed: false });
+        items.forEach(a => {
+            a.onclick = function (e) {
+                var ul = e.target.parentNode.parentNode;
+                var div = ul.parentNode;
+                var context = div.getAttribute('data-context');
+                var button = div.querySelector('input[type="text"]');
+                button.value = e.target.innerText.trim();
+                var keyvalue = div.querySelector('input[type="hidden"][data-key]');
+                keyvalue.dataset.key = e.target.getAttribute('value');
+                var itemselected = ul.querySelector('a.active');
+                if (itemselected != null) itemselected.classList.remove('active');
+                e.target.classList.add('active');
+                button.focus();
+                onItemclick.context = context;
+                onItemclick.value = e.target.getAttribute('value');
+                document.dispatchEvent(onItemclick);
+            }
+        });
+    }
+    #UpdateCurrentIndex(container) {
+        var btn = container.querySelector('input[type="text"]');
+        var input = container.querySelector('input[type=hidden]');
+        var a = container.querySelector('a.dropdown-item.active');
+        if (a != null) a.classList.remove('active');
+        a = container.querySelector('a.dropdown-item[value="' + input.dataset.ssdropdownKey + '"]');
+        if (a == null) a = container.querySelector('a.dropdown-item[value=""]');
+        if (a != null) {
+            btn.value = a.innerText.trim();
+            a.classList.add('active');
+        } else btn.value = '';
+    }
+    #AddItem(ul, description, keyvalue) {
+        var li = document.createElement('li');
+        var a = document.createElement('a');
+        a.setAttribute('href', '#');
+        a.classList.add('dropdown-item');
+        a.setAttribute('value', keyvalue);
+        a.innerHTML = description;
+        li.appendChild(a);
+        ul.appendChild(li);
+    }
+    #Url(url, params = null) {
+        url = url
+        .replace(/\?+\s*/g, "?")
+        .replace(/\s*&\s*/g, "&")
+        .replace(/&+$/, "");
+        if (params != null) {
+            params = new URLSearchParams(params).toString();
+            if (!url.includes("?")) {
+                url += '?';
+            } else if (!url.endsWith("?") && !url.endsWith("&")) {
+                url += '&';
+            }
+            return url + params;
+        } else return url;
+    }
+    #Load(container, params = null) {
+        const This = this;
+        const xhr = new XMLHttpRequest();
+        var uri = container.dataset.uri;
+        uri = this.#Url(uri, params);
+        const descFieldName = container.dataset.descriptionFieldname;
+        const keyFieldName = container.dataset.keyFieldname;
+        const hourglass = container.querySelector('img[data-role="hourglass"]');
+        const ul = container.querySelector('ul.dropdown-menu');
+        ul.innerHTML = '';
+        xhr.open('get', uri);
+        xhr.responseType = 'json';
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    var result = xhr.response;
+                    if (result.length > 0) {
+                        var input = container.querySelector('input[type=hidden][data-key]');
+                        input.dataset.ssdropdownKey = input.value;
+                        var firstSelected = (result.length == 1 && container.dataset.selectedIfSingleResult == 'yes');
+                        if (!firstSelected) {
+                            This.#AddItem(ul, '&nbsp;', '');
+                            for (var i = 0; i < result.length; i++) { This.#AddItem(ul, result[i][descFieldName], result[i][keyFieldName]); }
+                            This.#BindEvents(container);
+                            This.#UpdateCurrentIndex(container);
+                        }
+                        else
+                        {
+                            container.querySelector('input[type="text"]').value = result[0][descFieldName];
+                            var keyvalue = container.querySelector('input[type="hidden"][data-key]');
+                            keyvalue.value = result[0][keyFieldName];
+                            keyvalue.dataset.key = result[0][keyFieldName];
+                        }
+                    }
+                }
+                hourglass.classList.add("d-none");
+            }
+        }
+        hourglass.classList.remove("d-none");
+        xhr.send();
+    }
+}
 
-
+```
