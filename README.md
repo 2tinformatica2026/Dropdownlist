@@ -458,6 +458,8 @@ In questo caso si assegni data-url="" e si utilizzi il metodo pubblico WriteUrl(
 
 # **3	Single Static Dropdown Loader**
 
+<img width="248" height="220" alt="image-02" src="https://github.com/user-attachments/assets/8932e849-41d7-4d62-a325-06b35d263386" />
+
 Recupera da un apposito servizio web un elenco di record costituiti da una chiave e una descrizione come, ad esempio,
 
 **[{“description”: “Rosso”,”key”: 125},{“description”: “Verde”,”key”: 90},………]**
