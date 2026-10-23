@@ -446,7 +446,7 @@ class DDropdownLoader {
         }
 
         [HttpGet]
-        public ActionResult ElencoProdottiServizi2(string description)
+        public ActionResult ElencoProdottiServizi(string description)
         {
             if (User?.Identity?.IsAuthenticated != true) return StatusCode(StatusCodes.Status401Unauthorized);
             using (var db = new AuthorizationDb())
