@@ -444,6 +444,25 @@ class DDropdownLoader {
             }
                 return View();
         }
+
+        [HttpGet]
+        public ActionResult ElencoProdottiServizi2(string description)
+        {
+            if (User?.Identity?.IsAuthenticated != true) return StatusCode(StatusCodes.Status401Unauthorized);
+            using (var db = new AuthorizationDb())
+            {
+                var result = (from PS in db.ProdottiServizi
+                              where PS.Descrizione.StartsWith(description == null ? "" : description)
+                              select new
+                              {
+                                  key = PS.Kid,
+                                  description = PS.Descrizione,
+                              }).OrderBy(x => x.description);
+                return Ok(result.ToList());
+            }
+        }
+
+
 ```
 
 ### <u><strong>Operatività del controllo</strong></u>
