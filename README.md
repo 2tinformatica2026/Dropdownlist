@@ -432,7 +432,6 @@ class DDropdownLoader {
 ```csharp
         public IActionResult Index()
         {
-            Localization.SetCultureInfoOnPostBack(HttpContext);
             if (HttpContext.Request.Method.ToUpper() == "POST")
             {
             ViewBag.key = HttpContext.Request.Form["key"];
