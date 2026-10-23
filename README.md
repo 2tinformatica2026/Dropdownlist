@@ -699,3 +699,30 @@ class SSDropdownLoader {
 }
 
 ```
+### <u><strong>Web Service</strong></u>
+```csharp
+        [HttpGet]
+        [Route("Offers/EserciziOfferte")]
+        public ActionResult EserciziOfferte()
+        {
+            if (User?.Identity?.IsAuthenticated != true) return StatusCode(StatusCodes.Status401Unauthorized);
+            using (var db = new AuthorizationDb())
+            {
+                try
+                {
+                    var result = from O in db.Offerte
+                                 where O.Anno <= DateTime.Now.Year
+                                 select new Esercizi { Esercizio = O.Anno };
+                    
+                    var esercizi = result.Distinct().OrderByDescending(x=>x.Esercizio).ToList();
+
+                    if (esercizi.Count == 0) esercizi.Add(new Esercizi() { Esercizio = DateTime.Now.Year });
+
+                    return Ok(esercizi);
+
+                } catch { return StatusCode(StatusCodes.Status500InternalServerError); }
+            }
+        }
+
+```
+
