@@ -429,6 +429,24 @@ class DDropdownLoader {
     </script>
 }
 ```
+```csharp
+        public IActionResult Index()
+        {
+            Localization.SetCultureInfoOnPostBack(HttpContext);
+            if (HttpContext.Request.Method.ToUpper() == "POST")
+            {
+            ViewBag.key = HttpContext.Request.Form["key"];
+            ViewBag.description = HttpContext.Request.Form["description"];
+            }
+            else
+            {
+                ViewBag.key = 22;
+                ViewBag.description = "Hotel";
+            }
+                return View();
+        }
+```
+
 ### <u><strong>Operatività del controllo</strong></u>
 Il costruttore della classe ricerca tutti i container con proprietà data-component="dinamic-dropdown" ed esegue su di essi due principali azioni: 
 - imposta l'eventuale valore iniziale (chiave, descrizione) si veda esempio precedente con l'assegnazione value="@ViewBag.description" e value="@ViewBag.key"
