@@ -725,4 +725,9 @@ class SSDropdownLoader {
         }
 
 ```
+Si noti che abbiamo espressamente verificato l'avvenuta autenticazione dell'utente come prima istruzione del servizio (action) EserciziOfferte() invece che assegnavi l'attributo [Authorize].
+Il motivo è che tale attributo agisce sul context.Result con la finalità di reindirizzare la risposta del server su una pagina specifica o di default in caso di mancata autenticazione. Ma nel nostro caso l'invocazione del servizio avviene direttamente all'interno della pagina web sul browser e dunque la risposta http restituita sarebbe sempre la 200 (Ok).
+
+
+
 
