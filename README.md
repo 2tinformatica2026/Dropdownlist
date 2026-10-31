@@ -806,6 +806,8 @@ Quando il controllo interroga il servizio web indicato nella proprietà data-uri
 </ul> 
 
 ```
+Durante la creazione del menu se la proprietà value dell'elemento html "input type="hidden" data-key .." risulta valorizzata con un array di chiavi queste vengono confrontate con 
+le proprietà value di ciascuna checkbox aggiungendovi la proprietà checked in caso di corrispondenza.
 
 
 
