@@ -732,8 +732,11 @@ Il motivo è che tale attributo agisce sul context.Result con la finalità di re
 
 <img width="306" height="250" alt="image-03" src="https://github.com/user-attachments/assets/d7a0d803-079f-4de1-8440-dea43676cb4c" />
 
-Recupera dinamicamente un elenco di record costituiti da una chiave e una descrizione come, ad esempio,
+Anche in questo caso il controllo recupera dinamicamente, dopo l'istanzazione della classe MSDropdownLoader o in un secondo momento in base al valore assegnato all'attributo data-autoload del container, un elenco di record costituiti da una chiave e una descrizione quali, ad esempio,
 
 **[{“description”: “Rosso”,”key”: 125},{“description”: “Verde”,”key”: 90},………]**
+**[{“description”: “Rosso”,”key”: "black"},{“description”: “Verde”,”key”: "green"},………]**
+
+ma in questo caso a ciascun elemento del menu a discesa è stata aggiunta una checkbox il cui stato segnala se la proprietà value assegnata alla checkbox sia presente all'intero di un Array di valori.
 
 
