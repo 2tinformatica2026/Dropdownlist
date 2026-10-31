@@ -806,8 +806,12 @@ Quando il controllo interroga il servizio web indicato nella proprietà data-uri
 </ul> 
 
 ```
-Durante la creazione del menu se la proprietà value dell'elemento html "input type="hidden" data-key .." risulta valorizzata con un array di chiavi queste vengono confrontate con 
+Durante la creazione del menu qualora la proprietà value dell'elemento html "input type="hidden" data-key .." fosse valorizzata con un array di chiavi queste verranno confrontate con 
 le proprietà value di ciascuna checkbox aggiungendovi la proprietà checked in caso di corrispondenza.
+La selezione e deselezione delle checkbox effettuata dall'utente causerà l'aggiornamento dell'Array delle chiavi temporanee salvate all'interno della proprietà data-key dell'elemento 
+```html
+<input type="hidden" data-key />
+```
 
 ### <u><strong>Javascript class MSDropdownLoader</strong></u>
 ```javascript
