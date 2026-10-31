@@ -780,8 +780,32 @@ Nell'esempio superiore la proprietà value è stata collegata alla proprietà Ti
 ```
 ### <u><strong>Logica funzionale del controllo</strong></u>
 
+Quando il controllo interroga il servizio web indicato nella proprietà data-uri viene creato il seguente menu a discesa:
 
+```html
 
+<ul>
+    <li>
+        <a>
+            <input type="checkbox" class="form-check-input me-2" value="5" />
+            Descrizione 1
+        </a>
+    </li>
+    <li>
+        <a>
+            <input type="checkbox" class="form-check-input me-2" value="6"/>
+            Descrizione 2
+        </a>
+    </li>
+    <li>
+        <a>
+            <input type="checkbox" class="form-check-input me-2" value="13"/>
+            Descrizione 3
+        </a>
+    </li>
+</ul> 
+
+```
 
 
 
