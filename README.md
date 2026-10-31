@@ -740,5 +740,28 @@ Anche in questo caso il controllo recupera dinamicamente, dopo l'istanzazione de
 A ciascun elemento del menu a discesa del controllo è stata aggiunta una checkbox il cui stato segnalerà se la proprietà value assegnata alla checkbox sia presente all'intero di un Array di valori.
 Dunque la differenza rispetto alle due precedenti dropdownlist è il passagio da una chiave singola ad una Array di chiavi numeriche o di testo.
 
+### <u><strong>Struttura Html del controllo</strong></u>
+
+```html
+
+<div class="col-5 col-md-3 col-lg-2">
+    <label class="form-label">@localizer["typeOfOffers"]</label>
+    <div class="msdropdown dropdown" id="test"
+            data-component="multiple-static-dropdown"
+            data-context="" 
+            data-autoload="yes"
+            data-uri="/Offers/TipologiaOfferte" 
+            data-description-fieldname="Descrizione"
+            data-key-fieldname="Tipo">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi-card-checklist ms-1 me-3"></i>
+            <span class="me-2" data-role="counter"></span>
+        </button>
+        <ul class="dropdown-menu"></ul>
+        <input asp-for="@Model.TipoOfferta" type="hidden" data-key />
+        <i class="hourglass hourglass-sm d-none" data-role="hourglass"></i>
+    </div>
+</div>
 
 
+```
