@@ -778,7 +778,7 @@ Nell'esempio superiore la proprietà value è stata collegata alla proprietà Ti
 ```html 
 <input type="hidden" data-key value = '["red","white","black"]' />
 ```
-
+### <u><strong>Logica funzionale del controllo</strong></u>
 
 
 
