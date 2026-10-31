@@ -746,7 +746,7 @@ Dunque la differenza rispetto alle due precedenti dropdownlist è il passagio da
 <div class="row">
     <div class="col-5 col-md-3 col-lg-2">
         <label class="form-label">Tipologia Offerte</label>
-        <div class="msdropdown dropdown" id="test"
+        <div class="msdropdown dropdown"
                 data-component="multiple-static-dropdown"
                 data-context="" 
                 data-autoload="yes"
