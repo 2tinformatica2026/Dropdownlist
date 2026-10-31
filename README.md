@@ -809,8 +809,211 @@ Quando il controllo interroga il servizio web indicato nella proprietà data-uri
 Durante la creazione del menu se la proprietà value dell'elemento html "input type="hidden" data-key .." risulta valorizzata con un array di chiavi queste vengono confrontate con 
 le proprietà value di ciascuna checkbox aggiungendovi la proprietà checked in caso di corrispondenza.
 
+### <u><strong>Javascript class MSDropdownLoader</strong></u>
+```javascript
+class MSDropdownLoader {
+    constructor() {
+        const containers = document.querySelectorAll('div[data-component="multiple-static-dropdown"]');
+        containers.forEach(container => {
+            // example: <input type="hidden" data-key value='[5,6]' />
+            // example: <input type="hidden" data-key value='["green","black"]' />
+            const input = container.querySelector('input[type="hidden"][data-key]');
+            input.value.trim();
+            if (input.value == '') input.value = '[]';
+            input.value = JSON.stringify(JSON.parse(input.value).map(String));
+            input.dataset.key = input.value;
+            if (container.dataset.autoload == 'yes') this.#Load(container);
+        });
+    }
+    Save(context = null) {
+        //update confirmed valute with temporary valu
+        const filter = context == null ? '' : '[data-context="' + context + '"]';
+        const containers = document.querySelectorAll('div[data-component="multiple-static-dropdown"]' + filter);
+        containers.forEach(container => {
+            var datakey = container.querySelector('input[type="hidden"][data-key]');
+            datakey.value = datakey.dataset.key;
+        });
+    }
+    Restores(context = null) {
+        //write temporary key value with last confirmed value 
+        const filter = context == null ? '' : '[data-context="' + context + '"]';
+        const containers = document.querySelectorAll('div[data-component="multiple-static-dropdown"]' + filter);
+        containers.forEach(container => {
+            var datakey = container.querySelector('input[type="hidden"][data-key]');
+            datakey.dataset.key = datakey.value;
+            this.#Refresh(container);
+        });
+    }
+    Clear(context = null, removeElements = false) {
+        //set the temporary key to empty array
+        const filter = context == null ? '' : '[data-context="' + context + '"]';
+        const containers = document.querySelectorAll('div[data-component="multiple-static-dropdown"]' + filter);
+        containers.forEach(container => {
+            var datakey = container.querySelector('input[type=hidden][data-key]');
+            datakey.dataset.key = '[]';
+            if (removeElements) {
+                var ul = container.querySelector('ul');
+                ul.innerHTML = '';
+            }
+            this.#Refresh(container);
+        });
+    }
+    Load(containerId, params = null, selectedKeys = null) {
+        const container = document.querySelector('div[data-component="multiple-static-dropdown"][id="' + containerId + '"]');
+        if (selectedKeys != null) {
+            const input = container.querySelector('input[type="hidden"][data-key]');
+            // If selectedKeys is already an Array type it is converted to an Array of strings if it is not already
+            // and transformed into a string for assignment to the value property of the input element.
+            // If it is an Array in string format it will be parserized into an Array of strings and then 
+            // converted to a string for assignment to the value property of the input element. 
+            switch (Array.isArray(selectedKeys)) {
+                case true:
+                    input.value = JSON.stringify(selectedKeys.map(String));
+                    break;
+                case false:
+                    input.value = JSON.stringify(JSON.parse(selectedKeys).map(String));
+                    break;
+            }
+            input.dataset.key = input.value;
+        }
+        this.#Load(container, params);
+    }
+    GetKeyValue(containerId) {
+        //return the confirmed value
+        return document.getElementById(containerId).querySelector('input[type="hidden"][data-key]').value;
+    }
+    #Url(url, params = null) {
+        url = url
+            .replace(/\?+\s*/g, "?")
+            .replace(/\s*&\s*/g, "&")
+            .replace(/&+$/, "");
+        if (params != null) {
+            params = new URLSearchParams(params).toString();
+            if (!url.includes("?")) {
+                url += '?';
+            } else if (!url.endsWith("?") && !url.endsWith("&")) {
+                url += '&';
+            }
+            return url + params;
+        } else return url;
+    }
+    #Load(container, params = null) {
+        function AddItem(ul, description, keyvalue, selectedKeys) {
+            var li = document.createElement('li');
+            var a = document.createElement('a');
+            a.setAttribute('href', '#');
+            a.classList.add('dropdown-item');
+            var ck = document.createElement('input');
+            ck.setAttribute('type', 'checkbox');
+            ck.classList.add('form-check-input', 'me-2');
+            keyvalue = String(keyvalue);
+            ck.setAttribute('value', keyvalue);
+            if (SelectedKeys.length > 0 && selectedKeys.includes(keyvalue)) ck.setAttribute('checked','');
+            a.innerHTML = ck.outerHTML + description;
+            li.appendChild(a);
+            ul.appendChild(li);
+            return ck.checked;
+        }
+        const xhr = new XMLHttpRequest();
+        const uri = this.#Url(container.getAttribute('data-uri'), params);
+        const descFieldName = container.dataset.descriptionFieldname;
+        const keyFieldName = container.dataset.keyFieldname;
+        const hourglass = container.querySelector('i[data-role="hourglass"]');
+        const ul = container.querySelector('ul.dropdown-menu');
+        const input = container.querySelector('input[type="hidden"][data-key]');
+        const SelectedKeys = JSON.parse(input.value); // read saved keys
+        ul.innerHTML = '';
+        xhr.open('get', uri);
+        xhr.responseType = 'json';
+        xhr.onreadystatechange = ()=> {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    var count = 0;
+                    xhr.response.forEach(item => {
+                        if (AddItem(ul, item[descFieldName], item[keyFieldName], SelectedKeys)) count++;
+                    })
+                    //primary color for button if some element is checked
+                    const btn = container.querySelector('button');
+                    const counter = container.querySelector('span[data-role="counter"]');
+                    counter.innerText = '';
+                    btn.classList.remove("btn-secondary", "btn-primary");
+                    if (count > 0) {
+                        btn.classList.add("btn-primary");
+                        counter.innerText = '(' + count + ')';
+                    } else btn.classList.add("btn-secondary");
+                    // prevent the close of the container 
+                    ul.querySelectorAll('li').forEach(item => {
+                        var a = item.children[0];
+                        a.onclick = (e) => {
+                            if (e.target.type != 'checkbox') {
+                                var ck = e.target.querySelector('input[type=checkbox]');
+                                ck.checked = !ck.checked;
+                                this.#UpdateTemporaryKey(container, ck.checked, ck.value);
+                                e.preventDefault();
+                                e.stopPropagation();
+                            } else this.#UpdateTemporaryKey(container, e.target.checked, e.target.value);
+                        }
+                    })
+                }
+                hourglass.classList.add("d-none");
+            }
+        }
+        hourglass.classList.remove("d-none");
+        xhr.send();
+    }
+    #UpdateTemporaryKey(container, checked, value) {
+        const counter = container.querySelector('span[data-role="counter"]');
+        const keys = container.querySelector('input[type="hidden"][data-key]');
+        const btn = container.querySelector('button');
+        if (!keys) return;
+        const array = JSON.parse(keys.dataset.key);
+        value = String(value);
+        if (checked) {
+            if (!array.includes(value)) {
+                array.push(value);
+            }
+        } else {
+            const index = array.indexOf(value);
+            if (index !== -1) {
+                array.splice(index, 1);
+            }
+        }
+        keys.dataset.key = JSON.stringify(array);
+        counter.innerText = '';
+        btn.classList.remove("btn-secondary", "btn-primary");
+        // We count all input elements type="checkbox" inside the container that have the checked attribute.
+        // It would have been easier to check the length of the "array" variable containing the selected keys but it may not represent
+        // just the totality of one-to-one matches between the values assigned to the value properties of each checkbox and the list of
+        // loaded keys  due either to an error in the query design or to a mere architectural choice wanting to hide one or more keys
+        // that cannot be managed directly by the user but are attested by business logic.
+        const cks = container.querySelectorAll('input[type="checkbox"]:checked');
+        if (cks.length > 0) {
+            btn.classList.add("btn-primary");
+            counter.innerText = '(' + cks.length + ')';
+        } else btn.classList.add("btn-secondary");
+    }
+    #Refresh(container) {
+        //set checkbox state from the temporary key
+        var selectedKeys = container.querySelector('input[type="hidden"][data-key]').dataset.key;
+        selectedKeys = JSON.parse(selectedKeys);
+        const cks = container.querySelectorAll('input[type="checkbox"]');
+        const counter = container.querySelector('span[data-role="counter"]');
+        counter.innerText = '';
+        var count = 0;
+        cks.forEach(ck => {
+            ck.checked = selectedKeys.includes(ck.value);
+            if (ck.checked) count++;
+        })
+        //primary color for button if some element is checked
+        var btn = container.querySelector('button');
+        btn.classList.remove("btn-secondary", "btn-primary");
+        if (count > 0) {
+            btn.classList.add("btn-primary");
+            counter.innerText = '(' + count + ')';
+        } else btn.classList.add("btn-secondary");
+    }
+}
 
-
-
+```
 
 
