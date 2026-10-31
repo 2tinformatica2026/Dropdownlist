@@ -728,6 +728,12 @@ class SSDropdownLoader {
 Si noti che abbiamo espressamente verificato l'avvenuta autenticazione dell'utente come prima istruzione del servizio (action) EserciziOfferte() invece che assegnavi l'attributo [Authorize].
 Il motivo è che tale attributo agisce sul context.Result con la finalità di reindirizzare la risposta del server su una pagina specifica o di default in caso di mancata autenticazione. Ma nel nostro caso l'invocazione del servizio avviene direttamente all'interno della pagina web sul browser e dunque la risposta http restituita sarebbe sempre la 200 (Ok).
 
+# **4	Multiple Static Dropdown Loader**
 
+<img width="306" height="250" alt="image-03" src="https://github.com/user-attachments/assets/d7a0d803-079f-4de1-8440-dea43676cb4c" />
+
+Recupera dinamicamente un elenco di record costituiti da una chiave e una descrizione come, ad esempio,
+
+**[{“description”: “Rosso”,”key”: 125},{“description”: “Verde”,”key”: 90},………]**
 
 
