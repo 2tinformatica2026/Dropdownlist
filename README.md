@@ -771,8 +771,13 @@ L'array di chiavi deve essere assegnata alla proprietà value dell'elemento
 ```html 
 <input asp-for="@Model.TipoOfferta" type="hidden" data-key />
 ```
-
-
+Nell'esempio superiore la proprietà value è stata collegata alla proprietà TipoOfferta del modello di una view Razor ma potrebbe essere popolata a seguito di una chiamata ad altro servizio web oppure assegnata staticamente:
+```html 
+<input type="hidden" data-key value = '[5,6,13]' />
+```
+```html 
+<input type="hidden" data-key value = '["red","white","black"]' />
+```
 
 
 
