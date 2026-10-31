@@ -737,7 +737,7 @@ Anche in questo caso il controllo recupera dinamicamente, dopo l'istanzazione de
 **[{“description”: “Rosso”,”key”: 125},{“description”: “Verde”,”key”: 90},………]**
 **[{“description”: “Rosso”,”key”: "black"},{“description”: “Verde”,”key”: "green"},………]**
 
-A ciascun elemento del menu a discesa del controllo è stata aggiunta una checkbox il cui stato segnalerà se la proprietà value assegnata alla checkbox sia presente all'intero di un Array di valori.
+A ciascun elemento del menu a discesa del controllo è stata aggiunta una checkbox il cui stato segnalerà se la proprietà value assegnata alla checkbox sia presente all'intero di un Array di chiavi.
 Dunque la differenza rispetto alle due precedenti dropdownlist è il passagio da una chiave singola ad una Array di chiavi numeriche o di testo.
 
 ### <u><strong>Struttura Html del controllo</strong></u>
@@ -765,3 +765,21 @@ Dunque la differenza rispetto alle due precedenti dropdownlist è il passagio da
 </div>
 
 ```
+
+L'array di chiavi deve essere assegnata alla proprietà value dell'elemento 
+
+```html 
+<input asp-for="@Model.TipoOfferta" type="hidden" data-key />
+```
+
+
+
+
+
+
+
+
+
+
+
+
