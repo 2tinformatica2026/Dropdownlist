@@ -1052,5 +1052,20 @@ class MSDropdownLoader {
 }
 
 ```
+### <u><strong>Web Service</strong></u>
 
+```csharp
+        [HttpGet]
+        [Route("Offers/TipologiaOfferte")]
+        public ActionResult TipologiaOfferte()
+        {
+            if (User?.Identity?.IsAuthenticated != true) return StatusCode(StatusCodes.Status401Unauthorized);
+            using (var db = new AuthorizationDb())
+           {
+                var result = db.TipologiaOfferte.OrderBy(x=> x.Descrizione).ToList();
+                return Ok(result);
+           }
+        }
+
+```
 
