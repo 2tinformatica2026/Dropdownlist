@@ -1055,6 +1055,19 @@ class MSDropdownLoader {
 ### <u><strong>Web Service</strong></u>
 
 ```csharp
+
+    [Table("TIPOLOGIA_OFFERTE")]
+    [PrimaryKey(nameof(Tipo))]
+    public class TipologiaOfferte
+    {
+        [JsonPropertyName("Tipo")]
+        [Column("TIPO")]
+        public int Tipo {  get; set; }
+        [JsonPropertyName("Descrizione")]
+        [Column("DESCRIZIONE")]
+        public string Descrizione { get; set; } = string.Empty;
+     }
+
         [HttpGet]
         [Route("Offers/TipologiaOfferte")]
         public ActionResult TipologiaOfferte()
