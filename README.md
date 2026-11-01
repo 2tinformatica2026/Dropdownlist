@@ -536,6 +536,7 @@ Sulla scorta del valore assegnato all'attributo data-autoload del container il c
             <input type="hidden" value="@ViewBag.Anno" data-key="" />
         <!--<input type="hidden" asp-for="@Model.Anno" data-key="" /> -->
             <img class="hourglass hourglass-sm d-none" data-role="hourglass" />
+            <span class="bi ms-2 mt-auto mb-auto p-0 text-danger d-none" data-role="error"></span>
         </div>
     </div>
 </div>
