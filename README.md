@@ -1068,17 +1068,17 @@ class MSDropdownLoader {
         public string Descrizione { get; set; } = string.Empty;
      }
 
-        [HttpGet]
-        [Route("Offers/TipologiaOfferte")]
-        public ActionResult TipologiaOfferte()
-        {
-            if (User?.Identity?.IsAuthenticated != true) return StatusCode(StatusCodes.Status401Unauthorized);
-            using (var db = new AuthorizationDb())
-           {
-                var result = db.TipologiaOfferte.OrderBy(x=> x.Descrizione).ToList();
-                return Ok(result);
-           }
-        }
+    [HttpGet]
+    [Route("Offers/TipologiaOfferte")]
+    public ActionResult TipologiaOfferte()
+    {
+        if (User?.Identity?.IsAuthenticated != true) return StatusCode(StatusCodes.Status401Unauthorized);
+        using (var db = new AuthorizationDb())
+       {
+            var result = db.TipologiaOfferte.OrderBy(x=> x.Descrizione).ToList();
+            return Ok(result);
+       }
+    }
 
 ```
 Negli esempi abbiamo fatto riferimento a servizi implementati all'interno di controller Asp.net Core 8 MVC.
