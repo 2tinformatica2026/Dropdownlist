@@ -592,8 +592,13 @@ class SSDropdownLoader {
             }
         });
     }
-    Load(containerId, params = null) {
+    Load(containerId, params = null, selectedKey = null) {
         const container = document.querySelector('div[data-component="single-static-dropdown"][id=' + containerId + ']');
+        if (selectedKey != null) {
+            const input = container.querySelector('input[type="hidden"][data-key]');
+            input.value = selectedKey;
+            input.dataset.key = selectedKey;
+        }
         this.#Load(container, params);
     }
     GetKeyValue(containerId) {
@@ -665,36 +670,47 @@ class SSDropdownLoader {
         const descFieldName = container.dataset.descriptionFieldname;
         const keyFieldName = container.dataset.keyFieldname;
         const hourglass = container.querySelector('img[data-role="hourglass"]');
+        const error = container.querySelector('span[data-role="error"]');
         const ul = container.querySelector('ul.dropdown-menu');
         ul.innerHTML = '';
         xhr.open('get', uri);
         xhr.responseType = 'json';
         xhr.onreadystatechange = ()=> {
             if (xhr.readyState == 4) {
-                if (xhr.status == 200) {
-                    var result = xhr.response;
-                    if (result.length > 0) {
-                        var input = container.querySelector('input[type=hidden][data-key]');
-                        input.dataset.ssdropdownKey = input.value;
-                        var firstSelected = (result.length == 1 && container.dataset.selectedIfSingleResult == 'yes');
-                        if (!firstSelected) {
-                            this.#AddItem(ul, '&nbsp;', '');
-                            for (var i = 0; i < result.length; i++) { this.#AddItem(ul, result[i][descFieldName], result[i][keyFieldName]); }
-                            this.#BindEvents(container);
-                            this.#UpdateCurrentIndex(container);
-                        }
-                        else
-                        {
-                            container.querySelector('input[type="text"]').value = result[0][descFieldName];
-                            var keyvalue = container.querySelector('input[type="hidden"][data-key]');
-                            keyvalue.value = result[0][keyFieldName];
-                            keyvalue.dataset.key = result[0][keyFieldName];
-                        }
-                    }
-                }
                 hourglass.classList.add("d-none");
+                switch (xhr.status) {
+                    case 200:
+                        var result = xhr.response;
+                        if (result.length > 0) {
+                            var input = container.querySelector('input[type=hidden][data-key]');
+                            input.dataset.ssdropdownKey = input.value;
+                            var firstSelected = (result.length == 1 && container.dataset.selectedIfSingleResult == 'yes');
+                            if (!firstSelected) {
+                                this.#AddItem(ul, '&nbsp;', '');
+                                for (var i = 0; i < result.length; i++) { this.#AddItem(ul, result[i][descFieldName], result[i][keyFieldName]); }
+                                this.#BindEvents(container);
+                                this.#UpdateCurrentIndex(container);
+                            }
+                            else {
+                                container.querySelector('input[type="text"]').value = result[0][descFieldName];
+                                var keyvalue = container.querySelector('input[type="hidden"][data-key]');
+                                keyvalue.value = result[0][keyFieldName];
+                                keyvalue.dataset.key = result[0][keyFieldName];
+                            }
+                        }
+                        break;
+                    case 401:
+                        error.classList.add('bi-sign-do-not-enter');
+                        error.classList.remove("d-none");
+                        break;
+                    default:
+                        error.classList.add('bi-exclamation-circle');
+                        error.classList.remove("d-none");
+                }
             }
         }
+        error.classList.add('d-none');
+        error.classList.remove('bi-sign-do-not-enter,bi-exclamation-circle');
         hourglass.classList.remove("d-none");
         xhr.send();
     }
