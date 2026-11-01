@@ -760,6 +760,7 @@ Dunque la differenza rispetto alle due precedenti dropdownlist è il passagio da
             <ul class="dropdown-menu"></ul>
             <input asp-for="@Model.TipoOfferta" type="hidden" data-key />
             <i class="hourglass hourglass-sm d-none" data-role="hourglass"></i>
+            <span class="bi ms-2 mt-auto mb-auto p-0 text-danger d-none" data-role="error"></span>
         </div>
     </div>
 </div>
