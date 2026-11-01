@@ -925,43 +925,56 @@ class MSDropdownLoader {
         const hourglass = container.querySelector('i[data-role="hourglass"]');
         const ul = container.querySelector('ul.dropdown-menu');
         const input = container.querySelector('input[type="hidden"][data-key]');
+        const error = container.querySelector('span[data-role="error"]');
         const SelectedKeys = JSON.parse(input.value); // read saved keys
         ul.innerHTML = '';
         xhr.open('get', uri);
         xhr.responseType = 'json';
         xhr.onreadystatechange = ()=> {
             if (xhr.readyState == 4) {
-                if (xhr.status == 200) {
-                    var count = 0;
-                    xhr.response.forEach(item => {
-                        if (AddItem(ul, item[descFieldName], item[keyFieldName], SelectedKeys)) count++;
-                    })
-                    //primary color for button if some element is checked
-                    const btn = container.querySelector('button');
-                    const counter = container.querySelector('span[data-role="counter"]');
-                    counter.innerText = '';
-                    btn.classList.remove("btn-secondary", "btn-primary");
-                    if (count > 0) {
-                        btn.classList.add("btn-primary");
-                        counter.innerText = '(' + count + ')';
-                    } else btn.classList.add("btn-secondary");
-                    // prevent the close of the container 
-                    ul.querySelectorAll('li').forEach(item => {
-                        var a = item.children[0];
-                        a.onclick = (e) => {
-                            if (e.target.type != 'checkbox') {
-                                var ck = e.target.querySelector('input[type=checkbox]');
-                                ck.checked = !ck.checked;
-                                this.#UpdateTemporaryKey(container, ck.checked, ck.value);
-                                e.preventDefault();
-                                e.stopPropagation();
-                            } else this.#UpdateTemporaryKey(container, e.target.checked, e.target.value);
-                        }
-                    })
-                }
                 hourglass.classList.add("d-none");
+
+                switch (xhr.status) {
+                    case 200:
+                        var count = 0;
+                        xhr.response.forEach(item => {
+                            if (AddItem(ul, item[descFieldName], item[keyFieldName], SelectedKeys)) count++;
+                        })
+                        //primary color for button if some element is checked
+                        const btn = container.querySelector('button');
+                        const counter = container.querySelector('span[data-role="counter"]');
+                        counter.innerText = '';
+                        btn.classList.remove("btn-secondary", "btn-primary");
+                        if (count > 0) {
+                            btn.classList.add("btn-primary");
+                            counter.innerText = '(' + count + ')';
+                        } else btn.classList.add("btn-secondary");
+                        // prevent the close of the container 
+                        ul.querySelectorAll('li').forEach(item => {
+                            var a = item.children[0];
+                            a.onclick = (e) => {
+                                if (e.target.type != 'checkbox') {
+                                    var ck = e.target.querySelector('input[type=checkbox]');
+                                    ck.checked = !ck.checked;
+                                    this.#UpdateTemporaryKey(container, ck.checked, ck.value);
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                } else this.#UpdateTemporaryKey(container, e.target.checked, e.target.value);
+                            }
+                        })
+                        break;
+                    case 401:
+                        error.classList.add('bi-sign-do-not-enter');
+                        error.classList.remove("d-none");
+                        break;
+                    default:
+                        error.classList.add('bi-exclamation-circle');
+                        error.classList.remove("d-none");
+                }
             }
         }
+        error.classList.add('d-none');
+        error.classList.remove('bi-sign-do-not-enter,bi-exclamation-circle');
         hourglass.classList.remove("d-none");
         xhr.send();
     }
