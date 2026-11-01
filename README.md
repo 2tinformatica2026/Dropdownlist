@@ -420,7 +420,7 @@ class DDropdownLoader {
     <input type="button" value="restores" onclick="dd.Restores()" />
     <input type="button" value="set url" onclick="dd.WriteUrl('test','/Offers/ElencoProdottiServizi')" />
     <input type="button" value="clear url" onclick="dd.WriteUrl('test','')" />
-    <input type="button" value="writeKeyAndDescription" onclick="dd.SetKeyAndDescription('test','12','Sopralluogo')" />
+    <input type="button" value="Load" onclick="dd.Load('test','12','Sopralluogo')" />
     <input type="button" value="GetKeyAndDescriptioValues" onclick="var r = dd.GetKeyAndDescriptioValues('test'); alert(r.key + ' ' + r.description)" />
 
 </form>
