@@ -1068,4 +1068,11 @@ class MSDropdownLoader {
         }
 
 ```
+Negli esempi abbiamo fatto riferimento a servizi implementati all'interno di controller Asp.net Core 8 MVC.
+Si noterà che abbiamo espressamente verificato l'avvenuta autenticazione dell'utente senza utilizzare la proprietà [Authorize].
+La ragione è che Authorize è progettata in un contesto Controller/Action/View e l'operatività avviene a livello di Action. Nei nostri esempi le chiamate vengono eseguite all'interno della pagina html del browser e in caso
+di mancata autenticazione oppure di scadenza del relativo cookie la proprietà status di xmlhttprequest riceverebbe il valore 200.
+Il problema non si pone ovviamente qualora il servizio web fosse erogato da una web Api.
+
+
 
