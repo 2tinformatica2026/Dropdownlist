@@ -263,12 +263,14 @@ class DDropdownLoader {
         input.readOnly = (url == '');
         div.dataset.url = url;
     }
-    SetKeyAndDescription(containerId, keyValue, descriptionValue) {
+    Load(containerId, keyValue, descriptionValue) {
         const div = document.getElementById(containerId);
         const key = div.querySelector("input[type='hidden'][data-key]");
         const description = div.querySelector("input[type='hidden'][data-description]");
         const input = div.querySelector('input[type="text"][data-role="editor"]');
+        key.value = keyValue; 
         key.dataset.key = keyValue;
+        description.value = descriptionValue; 
         description.dataset.description = descriptionValue;
         //show initial description
         input.value = descriptionValue;
