@@ -1113,7 +1113,13 @@ Il problema non si porrebbe ovviamente qualora il servizio web fosse erogato da 
 
 - Il pulsante "Applica" conferma il valori indicati dall'utente.
 
+### <u><strong>Struttura Html del controllo</strong></u>
 
+```html
+
+
+
+```
 
 
 
