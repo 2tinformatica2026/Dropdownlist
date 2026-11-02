@@ -1117,14 +1117,11 @@ Il problema non si porrebbe ovviamente qualora il servizio web fosse erogato da 
 <form method="post" asp-controller="Home" asp-action="Offers">
     <input asp-for="@Model.JsonRisultati" type="hidden" />
     <div class="row">
-        <div class="col-11">
+        <div class="col-12">
             <button class="btn btn-outline-success btn-sm" type="button" onclick="RestoresFilters()" data-bs-toggle="collapse" data-bs-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
                 <i class="bi-filter"></i>
                 @localizer["extendedFilters"]
             </button>
-        </div>
-        <div class="col-1">
-            <img src="~/pictures/offers/offerte.png" class="img-fluid" />
         </div>
     </div>
     @* panel filters *@
@@ -1170,7 +1167,7 @@ Il problema non si porrebbe ovviamente qualora il servizio web fosse erogato da 
                         <span class="me-2" data-role="counter"></span>
                     </button>
                     <ul class="dropdown-menu"></ul>
-                    <input asp-for="@Model.TipoOfferta" type="hidden" data-key data-dt-param-type="Array" />
+                    <input asp-for="@Model.TipoOfferta" type="hidden" data-key />
                     <i class="hourglass hourglass-sm d-none" data-role="hourglass"></i>
                     <span class="bi ms-2 mt-auto mb-auto p-0 text-danger d-none" data-role="error"></span>
                 </div>
@@ -1190,7 +1187,7 @@ Il problema non si porrebbe ovviamente qualora il servizio web fosse erogato da 
                         <span class="me-2" data-role="counter"></span>
                     </button>
                     <ul class="dropdown-menu"></ul>
-                    <input asp-for="@Model.StatoDiLavorazione" type="hidden" data-key data-dt-param-type="Array" />
+                    <input asp-for="@Model.StatoDiLavorazione" type="hidden" data-key />
                     <i class="hourglass hourglass-sm d-none" data-role="hourglass"></i>
                     <span class="bi ms-2 mt-auto mb-auto p-0 text-danger d-none" data-role="error"></span>
                 </div>
