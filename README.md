@@ -1097,15 +1097,13 @@ Il problema non si porrebbe ovviamente qualora il servizio web fosse erogato da 
 
 ### ***Pannello aperto***
 
-<img width="589" height="206" alt="filtri di ricerca 02" src="https://github.com/user-attachments/assets/9979388a-f1cf-44f3-8cc7-3a927dee5731" />
+<img width="709" height="194" alt="filtri di ricerca 02" src="https://github.com/user-attachments/assets/6dfe7e64-ee19-4f49-a109-53bc04e7c992" />
 
 ### ***L'utente seleziona alcuni filtri***
 
-<img width="594" height="354" alt="filtri di ricerca 03" src="https://github.com/user-attachments/assets/7dc7c88d-b4b6-4413-96aa-f32acb4ebf11" />
-
+<img width="671" height="339" alt="filtri di ricerca 03" src="https://github.com/user-attachments/assets/1de02ef9-a22a-4d05-9228-29ff69cffb1c" />
 <br>
-
-<img width="699" height="386" alt="filtri di ricerca 04" src="https://github.com/user-attachments/assets/2998a50b-a4b6-42bf-93aa-7100403328c1" />
+<img width="810" height="371" alt="filtri di ricerca 04" src="https://github.com/user-attachments/assets/96a7e3e2-ce78-45e5-9541-af4c280ddf7c" />
 
 - Se l'utente chiude il pannello dei filtri senza fare click sul pulsante "Applica" alla chiusura saranno reimpostati gli ultimi valori confermati:
 
