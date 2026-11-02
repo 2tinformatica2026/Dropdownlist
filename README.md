@@ -1107,3 +1107,15 @@ Il problema non si porrebbe ovviamente qualora il servizio web fosse erogato da 
 
 <img width="699" height="386" alt="filtri di ricerca 04" src="https://github.com/user-attachments/assets/2998a50b-a4b6-42bf-93aa-7100403328c1" />
 
+- Se l'utente chiude il pannello dei filtri senza fare click sul pulsante "Applica" alla chiusura saranno reimpostati gli ultimi valori confermati:
+
+- Il pulsante "Puisci" resetta i valori dei filtri ma senza confermarli.
+
+- Il pulsante "Applica" conferma il valori indicati dall'utente.
+
+
+
+
+
+
+
