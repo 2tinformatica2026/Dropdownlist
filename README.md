@@ -1103,4 +1103,7 @@ Il problema non si porrebbe ovviamente qualora il servizio web fosse erogato da 
 
 <img width="594" height="354" alt="filtri di ricerca 03" src="https://github.com/user-attachments/assets/7dc7c88d-b4b6-4413-96aa-f32acb4ebf11" />
 
+<br>
+
+<img width="699" height="386" alt="filtri di ricerca 04" src="https://github.com/user-attachments/assets/2998a50b-a4b6-42bf-93aa-7100403328c1" />
 
