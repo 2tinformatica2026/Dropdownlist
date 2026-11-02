@@ -418,9 +418,11 @@ class DDropdownLoader {
     <input type="submit" value="save" onclick="dd.Save()" />
     <input type="button" value="clear" onclick="dd.Clear()" />
     <input type="button" value="restores" onclick="dd.Restores()" />
-    <input type="button" value="set url" onclick="dd.WriteUrl('test','/Offers/ElencoProdottiServizi')" />
-    <input type="button" value="clear url" onclick="dd.WriteUrl('test','')" />
-    <input type="button" value="Load" onclick="dd.Load('test','12','Sopralluogo')" />
+    <input type="button" value="Load" onclick="dd.Load('test','12','Cartogeno')" />
+    <!-- write key, description and clear url disabling dynamic dropdown list operation  -->
+    <input type="button" value="Load Disable" onclick="dd.Load('test','12','Cartogeno','')" />
+    <!-- write key, description and by setting url enabling dynamic dropdown list operation  -->
+    <input type="button" value="Load Enable" onclick="dd.Load('test','12','Cartogeno','/Offers/ElencoProdottiServizi2')" />
     <input type="button" value="GetKeyAndDescriptioValues" onclick="var r = dd.GetKeyAndDescriptioValues('test'); alert(r.key + ' ' + r.description)" />
 
 </form>
