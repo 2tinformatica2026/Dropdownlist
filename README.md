@@ -1114,11 +1114,110 @@ Il problema non si porrebbe ovviamente qualora il servizio web fosse erogato da 
 ### <u><strong>Struttura Html del controllo</strong></u>
 
 ```html
+<form method="post" asp-controller="Home" asp-action="Offers">
+    <input asp-for="@Model.JsonRisultati" type="hidden" />
+    <div class="row">
+        <div class="col-11">
+            <button class="btn btn-outline-success btn-sm" type="button" onclick="RestoresFilters()" data-bs-toggle="collapse" data-bs-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
+                <i class="bi-filter"></i>
+                @localizer["extendedFilters"]
+            </button>
+        </div>
+        <div class="col-1">
+            <img src="~/pictures/offers/offerte.png" class="img-fluid" />
+        </div>
+    </div>
+    @* panel filters *@
+    <div class="collapse mt-2 p-2 border border-1" id="collapseFilter">
+        <div class="row g-3">
+            <div class="col-4 col-md-3 col-lg-2 col-xxl-2">
+                <label class="form-label user-select-none">Esercizio</label>
+                <div class="ssdropdown dropdown input-group" id="test2"
+                        data-component="single-static-dropdown"
+                        data-bs-toggle="dropdown"
+                        data-selected-if-single-result="no"
+                        data-autoload="yes"
+                        data-uri="@Endpoints.EserciziOfferteUrl(configuration)" 
+                        data-description-fieldname="esercizio" 
+                        data-key-fieldname="esercizio" 
+                        data-context="">
+                    <input type="text"
+                            readonly
+                            autocomplete="off"
+                            class="form-control bg-white user-select-none no-focus"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false" />
+                    <span class="input-group-text dropdown-toggle" role="button"></span>
+                    <ul class="dropdown-menu"></ul>
+                    <input asp-for="@Model.Anno" type="hidden" data-key data-dt-param-type="Numeric" />
+                    <img class="hourglass hourglass-sm d-none" data-role="hourglass" />
+                    <span class="bi ms-2 mt-auto mb-auto p-0 text-danger d-none" data-role="error"></span>
+                </div>
+            </div>
 
+            <div class="col-5 col-md-3 col-lg-2">
+                <label class="form-label">@localizer["typeOfOffers"]</label>
+                <div class="msdropdown dropdown"
+                        data-component="multiple-static-dropdown"
+                        data-context="" 
+                        data-autoload="yes"
+                        data-uri="@Endpoints.TipologiaOfferteUrl(configuration)" 
+                        data-description-fieldname="Descrizione"
+                        data-key-fieldname="Tipo">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi-card-checklist ms-1 me-3"></i>
+                        <span class="me-2" data-role="counter"></span>
+                    </button>
+                    <ul class="dropdown-menu"></ul>
+                    <input asp-for="@Model.TipoOfferta" type="hidden" data-key data-dt-param-type="Array" />
+                    <i class="hourglass hourglass-sm d-none" data-role="hourglass"></i>
+                    <span class="bi ms-2 mt-auto mb-auto p-0 text-danger d-none" data-role="error"></span>
+                </div>
+            </div>
 
+            <div class="col-5 col-md-3 col-lg-2">
+                <label class="form-label">@localizer["milestones"]</label>
+                <div class="msdropdown dropdown"
+                    data-component="multiple-static-dropdown"
+                    data-context=""
+                    data-autoload="yes"
+                    data-uri="@Endpoints.StatiDiLavorazioneUrl(configuration)" 
+                    data-description-fieldname="Descrizione" 
+                    data-key-fieldname="StatoDiLavorazione">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi-card-checklist ms-1 me-3"></i>
+                        <span class="me-2" data-role="counter"></span>
+                    </button>
+                    <ul class="dropdown-menu"></ul>
+                    <input asp-for="@Model.StatoDiLavorazione" type="hidden" data-key data-dt-param-type="Array" />
+                    <i class="hourglass hourglass-sm d-none" data-role="hourglass"></i>
+                    <span class="bi ms-2 mt-auto mb-auto p-0 text-danger d-none" data-role="error"></span>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-outline-primary btn-sm mt-3 mb-2" type="button" onclick="saveFilters()">
+            <i class="bi-search"></i>
+            @localizer["applyFilters"]
+        </button>
+        <button class="btn btn-outline-primary btn-sm mt-3 mb-2" type="button" onclick="clearFilters()">
+            <i class="bi-trash"></i>
+            @localizer["clearFilters"]
+        </button>
+    </div>
+</form>
 
 ```
+```javascript
+    <script type="text/javascript">
+        const SSD = new SSDropdownLoader();
+        const MSD = new MSDropdownLoader();
+        function RestoresFilters(){ SSD.Restores(); DD.Restores(); MSD.Restores() }
+        function saveFilters(){ SSD.Save(); DD.Save(); MSD.Save(); } // <= do some thing here
+        function clearFilters(){ SSD.Clear(); DD.Clear(); MSD.Clear() }
+</script>
 
+```
 
 
 
