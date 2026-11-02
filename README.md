@@ -1091,8 +1091,13 @@ Il problema non si porrebbe ovviamente qualora il servizio web fosse erogato da 
 
 # **5	Esempio di un filtro di ricerca**
 
+Pannello chiuso
+
 <img width="158" height="54" alt="filtri di ricerca 01" src="https://github.com/user-attachments/assets/23d1fdbb-ddf4-44c5-b0f8-28988753a65b" />
 
+Pannello aperto
+
 <img width="589" height="206" alt="filtri di ricerca 02" src="https://github.com/user-attachments/assets/9979388a-f1cf-44f3-8cc7-3a927dee5731" />
+
 
 
