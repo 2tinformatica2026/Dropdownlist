@@ -256,24 +256,24 @@ class DDropdownLoader {
             description: container.querySelector('input[type="hidden"][data-description]').value
         }
     }
-    WriteUrl(containerId, url) {
-        var div = document.getElementById(containerId);
-        var input = div.querySelector('input[type="text"][data-role="editor"]');
-        url = url.trim();
-        input.readOnly = (url == '');
-        div.dataset.url = url;
-    }
-    Load(containerId, keyValue, descriptionValue) {
-        const div = document.getElementById(containerId);
-        const key = div.querySelector("input[type='hidden'][data-key]");
-        const description = div.querySelector("input[type='hidden'][data-description]");
+    Load(containerId, keyValue = null, descriptionValue = null, url = null) {
+        const div = document.getElementById(containerId);  
         const input = div.querySelector('input[type="text"][data-role="editor"]');
-        key.value = keyValue; 
-        key.dataset.key = keyValue;
-        description.value = descriptionValue; 
-        description.dataset.description = descriptionValue;
-        //show initial description
-        input.value = descriptionValue;
+        if (keyValue != null && descriptionValue != null) {
+            const key = div.querySelector("input[type='hidden'][data-key]");
+            const description = div.querySelector("input[type='hidden'][data-description]");
+            key.value = keyValue; 
+            key.dataset.key = keyValue;
+            description.value = descriptionValue; 
+            description.dataset.description = descriptionValue;
+            //show initial description
+            input.value = descriptionValue;
+        }
+        if (url != null) {
+            url = url.trim();
+            input.readOnly = (url == '');
+            div.dataset.url = url;
+        }
     }
     #GetContainerElements(container) {
         const input = container.querySelector('input[type="text"][data-role="editor"]');
