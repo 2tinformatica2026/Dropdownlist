@@ -492,7 +492,7 @@ In questo caso si assegni data-url="" e si utilizzi il metodo pubblico WriteUrl(
 ```javascript
 <script>
         const dd = new DDropdownLoader();
-        document.addEventListener('onCategorySelected',(e)=>{ dd.WriteUrl(containerId, "/Offers/ElencoProdottiServizi?category=" + e.category)})
+        document.addEventListener('onCategorySelected',(e)=>{ dd.WriteUrl(containerId, null, null, "/Offers/ElencoProdottiServizi?category=" + e.category)})
 </script>
 ```
 
