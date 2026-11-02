@@ -1210,7 +1210,7 @@ Il problema non si porrebbe ovviamente qualora il servizio web fosse erogato da 
         const SSD = new SSDropdownLoader();
         const MSD = new MSDropdownLoader();
         function RestoresFilters(){ SSD.Restores(); DD.Restores(); MSD.Restores() }
-        function saveFilters(){ SSD.Save(); DD.Save(); MSD.Save(); } // <= do some thing here
+        function saveFilters(){ SSD.Save(); DD.Save(); MSD.Save(); alert('Saved'); }
         function clearFilters(){ SSD.Clear(); DD.Clear(); MSD.Clear() }
 </script>
 
