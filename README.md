@@ -1202,7 +1202,7 @@ Il problema non si porrebbe ovviamente qualora il servizio web fosse erogato da 
 
 ```
 ```javascript
-    <script type="text/javascript">
+<script type="text/javascript">
         const SSD = new SSDropdownLoader();
         const MSD = new MSDropdownLoader();
         function RestoresFilters(){ SSD.Restores(); MSD.Restores() }
