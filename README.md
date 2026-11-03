@@ -1125,7 +1125,7 @@ Il problema non si porrebbe ovviamente qualora il servizio web fosse erogato da 
         </div>
     </div>
     @* panel filters *@
-    <div class="collapse mt-2 p-2 border border-1 rounded rounded-2" id="collapseFilter">
+    <div class="collapse mt-2 p-2 border border-1 rounded rounded-2 text-bg-light" id="collapseFilter">
         <div class="row g-3">
             <div class="col-4 col-md-3 col-lg-2 col-xxl-2">
                 <label class="form-label user-select-none">Esercizio</label>
