@@ -1203,11 +1203,11 @@ Il problema non si porrebbe ovviamente qualora il servizio web fosse erogato da 
 ```
 ```javascript
 <script type="text/javascript">
-        const SSD = new SSDropdownLoader();
-        const MSD = new MSDropdownLoader();
-        function RestoresFilters(){ SSD.Restores(); MSD.Restores() }
-        function saveFilters(){ SSD.Save(); MSD.Save(); alert('Saved'); }
-        function clearFilters(){ SSD.Clear(); MSD.Clear() }
+    const SSD = new SSDropdownLoader();
+    const MSD = new MSDropdownLoader();
+    function RestoresFilters(){ SSD.Restores(); MSD.Restores() }
+    function saveFilters(){ SSD.Save(); MSD.Save(); alert('Saved'); }
+    function clearFilters(){ SSD.Clear(); MSD.Clear() }
 </script>
 
 ```
