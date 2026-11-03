@@ -1116,14 +1116,10 @@ Il problema non si porrebbe ovviamente qualora il servizio web fosse erogato da 
 ```html
 <form method="post" asp-controller="Home" asp-action="Offers">
     <input asp-for="@Model.JsonRisultati" type="hidden" />
-    <div class="row">
-        <div class="col-12">
-            <button class="btn btn-outline-success btn-sm" type="button" onclick="RestoresFilters()" data-bs-toggle="collapse" data-bs-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
-                <i class="bi-filter"></i>
-                @localizer["extendedFilters"]
-            </button>
-        </div>
-    </div>
+    <button class="btn btn-outline-success btn-sm" type="button" onclick="RestoresFilters()" data-bs-toggle="collapse" data-bs-target="#collapseFilter" aria-expanded="false" aria-controls="collapseFilter">
+        <i class="bi-filter"></i>
+        @localizer["extendedFilters"]
+    </button>
     @* panel filters *@
     <div class="collapse mt-2 p-2 border border-1 rounded rounded-2 text-bg-light" id="collapseFilter">
         <div class="row g-3">
